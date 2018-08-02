@@ -20,12 +20,14 @@
     </section>
     <section id="log_in_section" class="log_in_section">
         <p class="mobile_header">Budget Buddy</p>
-        <input class="loging_input" type="text" placeholder="name">
-        <input class="login_input" type="text" placeholder="name">
-        <button class="login_input login_button" type="button">Log In</button>
+        <form class="login_form">
+            <input class="loging_input" type="text" placeholder="Name">
+            <input class="login_input" type="text" placeholder="Email">
+            <button class="login_input login_button" type="button">Log In</button>  
+        </form> 
     </section>
 
-    <H2> Hey Jalen, Enter your weekly budget</H2>
+    <H2 class="weekly_budget_title"> Hey Jalen, Enter your weekly budget</H2>
     <section class="enterweeklybudget">
         <input type="text" id="WeeklyTotal" name="Weekly Total">
         <input type="text" id="Food" name="Food">
@@ -69,7 +71,7 @@
     <section class="purchases" id="purchases">
         <div class="greeting" id="greeting">
             <h2 class="pur-insert" id="pinsert">Hey, </h2>
-            <p>Log you purchases.</p>
+            <p>Log your purchases.</p>
             <section class="pur-log" id="pur-log">
                 <input type="text" name="food"  id="food-price-log">
                 <label for="food">Food</label>
