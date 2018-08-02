@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500');
 
-* {
+*/* {
   margin: 0;
   padding: 0;
-}
+}*/
 
 input{
   color: none; 
@@ -92,8 +92,10 @@ body {
   
   display: flex; 
   flex-direction: column;
-  width: 60%;
-  margin: 0 auto;
+  justify-content: flex-start;
+  width: 400px;
+  margin: 0;
+
 }
 
 .weekly_budget_title {
@@ -120,6 +122,7 @@ body {
   padding: 10px;
   text-align: center;
   color: #e9f0f4;
+
 }
 
 .enterweeklybudget label {
@@ -139,13 +142,20 @@ body {
 }
 
 /* Weekly Total Section */
-.weekly__total--container {
+/*.weekly__total--container {
+ display:flex;}*/
  
-}
+ 
+ 
+
 
 .total {
+  display: flex;
+  justify-content: center;
   background: rgba(233, 240, 244, .15);
   padding: 8%;
+  width: 500px;
+
 }
 
 .title {
@@ -170,8 +180,9 @@ body {
 /* Log Purcheses Section */
 .purchases {
   
-  margin: 0 auto;
-  width: 60%;
+  margin: 0;
+  width: 400px;
+  height: 500px;
 
 }
 
@@ -183,17 +194,22 @@ body {
 
 .purchases_form {
   display: flex;
+  justify-content:center;
   flex-direction: column;
-  margin: 50px 0;
+  width: 300px;
 }
 
 .pur_title {
+  display: flex;
+  justify-content: center;
   font-size: 25px;
   font-weight: 100;
   margin: 20px 0px;
 }
 
 .pur_title_sub {
+  display: flex;
+  justify-content: center;
   font-weight: 100;
   font-size: 22px;
 }
@@ -223,6 +239,11 @@ body {
   margin-top: 40px;
   cursor: pointer;
 }
+.pur-log{
+  display: flex;
+  justify-content: flex-end;
+
+}
 
 /* Mobile Menu */
 .mobile_menu {
@@ -240,7 +261,18 @@ body {
   cursor: pointer;
 }
 .desktop{
-  
+  display: hidden;
+
+}
+
+.containerdesktop{
+  display: flex;
+  justify-content: center;
+  flex-direction: space-between;
+  width: 100;
+  padding: 0px;
+
+
 }
 
 }
