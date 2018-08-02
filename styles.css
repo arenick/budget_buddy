@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #282f3e;
+  color: #e9f0f4;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Header Menu */
+.menu_container {
+  display: flex;
+  justify-content: space-between;
+  display: none;
+}
+
+.desktop_header {
+  font-size: 20px;
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+}
+
+.menu_item {
+  display: none;
+  margin-left: 10px;
+}
+
+.burger {
+  font-size: 20px;
+}
+
+/* Log in section */
+.log_in_section {
+  width: 50%;
+  margin: 100px auto;
+  text-align: center;
+}
+
+.login_form {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile_header {
+ margin-bottom: 80px;
+ font-size: 40px;
+}
+
+.login_form input {
+  background: none;
+  border: none;
+  border-bottom: 2px solid #e9f0f4;
+  margin-bottom: 50px;
+  font-size: 20px;
+  font-weight: 200;
+  padding: 10px;
+  text-align: center;
+}
+
+.login_button {
+  background: none;
+  color: #e9f0f4;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 200;
+  border: 2px solid #e9f0f4;
+  margin-top: 50px;
+}
+
+
+
+
+
+/* Weekly Budget Section */
+.enterweeklybudget {
+  display: none;
+}
+
+.weekly_budget_title {
+  display: none;
+}
+
+/* Weekly Total Section */
+.weekly__total--container {
+  display: none;
+}
+
+/* Log Purcheses Section */
+.purchases {
+  display: none;
+}
