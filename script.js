@@ -13,6 +13,8 @@ let foodBud =("");
 let entBud =("");
 let clothingBud = ("");
 let billsBud = ("");
+let tracker = undefined; 
+//global variables 
 
 
 $("body").on("click", ".login_button", (e) => {
@@ -20,7 +22,7 @@ $("body").on("click", ".login_button", (e) => {
     console.log($(".login_form").children().eq(0).val()); 
     personEmail = $(".login_form").children().eq(1).val();
     personName = $(".login_form").children().eq(0).val();
-    $("#log_in_section").fadeOut(2000, function(){
+    $("#log_in_section").animate({opacity: 0.0}, 1000, function(){
         $("#log_in_section").toggleClass("hidden"); 
         $(".enterweeklybudget").toggleClass("hidden");
     });
@@ -31,6 +33,7 @@ $("body").on("click", ".login_button", (e) => {
 });
 
 $("body").on("click" ,".enterweeklybudget .save", (e) => {
+     tracker = ".weekly__total--container"; 
      income = $("#weeklyTotal").val();
      foodBud = $("#food").val();
      entBud = $("#entertainment").val(); 
@@ -47,20 +50,113 @@ $("body").on("click" ,".enterweeklybudget .save", (e) => {
     $("#clothing_remaining").text(`Remaining: ${clothingBud}`); 
     $("#bills_remaining").text(`Remaining: ${billsBud}`); 
 
-    $(".enterweeklybudget").fadeOut(2000, function(){
+    $(".enterweeklybudget").animate({opacity: 0.0}, 1000, function(){
         $(".enterweeklybudget").toggleClass("hidden");
         $(".weekly__total--container").toggleClass("hidden");
-        WeeklyTotal();
-    });
+        tracker = ".weekly__total--container"; 
+        console.log(tracker);
+      });
+    WeeklyTotal();
 });
 
- let WeeklyTotal= (e)=>{
+ let WeeklyTotal = (e) => {
+  $(".weekly__total--container").animate({opacity: 1}, 1000);
      let myMoney= parseInt(income.replace(/[^0-9\.]+/g,''));
      let myFood= parseInt(foodBud.replace(/[^0-9\.]+/g,''));
      let myEnt= parseInt(entBud.replace(/[^0-9\.]+/g,''));
      let myclothes= parseInt(clothingBud.replace(/[^0-9\.]+/g,''));
-     let myBills= parseInt(billsBud.replace(/[^0-9\.]+/g,''));
-    
+     let myBills= parseInt(billsBud.replace(/[^0-9\.]+/g,'')); 
  }
 
+// Hamburger Menu Slide Down Click Event
+$("body").on("click", "section ul a.burger", (e) => {
+  $("ul.mobile_menu").slideToggle(1000);
 });
+
+// Click Event for menu items
+$("body").on("click", "#home", (e) => {
+  $('#home').off('click');
+  console.log(e.target);
+  if(tracker === ".weekly__total--container"){
+    return; 
+  }
+  if (tracker === "#purchases") {
+    $("#purchases").animate({opacity: 0.0}, 1000, function(){
+      $("#purchases").toggleClass("hidden");
+      $(".weekly__total--container").toggleClass("hidden");
+      $(".weekly__total--container").animate({opacity: 1.0}, 1000, function(){
+        tracker = ".weekly__total--container"; 
+        $('#home').on('click');
+      });
+    }); 
+  }
+  if(tracker === ".enterweeklybudget"){
+    $(".enterweeklybudget").animate({opacity: 0.0},1000, function(){
+      $(".enterweeklybudget").toggleClass("hidden");
+      $(".weekly__total--container").toggleClass("hidden");
+      $(".weekly__total--container").animate({opacity: 1.0}, 1000, function(){
+        tracker = ".weekly__total--container"; 
+        $('#home').on('click');
+      });
+    })
+
+  }
+
+ 
+}); 
+
+$("body").on("click", "#edit_budget", (e) => {
+  console.log(e.target);
+  if(tracker === ".enterweeklybudget"){
+    return; 
+  }
+  if (tracker === "#purchases") {
+    $("#purchases").animate({opacity: 0.0}, 1000, function(){
+      $("#purchases").toggleClass("hidden");
+      $(".enterweeklybudget").toggleClass("hidden");
+      $(".enterweeklybudget").animate({opacity: 1.0}, 1000, function(){
+        tracker = ".enterweeklybudget"; 
+      });
+    }); 
+  }
+  if(tracker === ".weekly__total--container"){
+    $(".weekly__total--container").animate({opacity: 0.0}, 1000, function(){
+      $(".weekly__total--container").toggleClass("hidden");
+      $(".enterweeklybudget").toggleClass("hidden");
+      $(".enterweeklybudget").animate({opacity : 1.0}, 1000, function(){
+        tracker = ".enterweeklybudget"; 
+      });
+    })
+  }
+
+ 
+}); 
+
+$("body").on("click", "#log_purchases", (e) => {
+  console.log(e.target);
+  if(tracker === "#purchases"){
+    return; 
+  }
+  if (tracker === ".weekly__total--container") {
+    $("#purchases").animate({opacity: 0.0}, 1000, function(){
+      $("#purchases").toggleClass("hidden");
+      $(".weekly__total--container").toggleClass("hidden");
+      $("#purchases").animate({opacity: 1.0}, 1000, function(){
+        tracker = "#purchases"; 
+      });
+    }); 
+  }
+  if(tracker === ".enterweeklybudget"){
+    $("#purchases").animate({opacity: 0.0}, 1000, function(){
+      $(".enterweeklybudget").toggleClass("hidden");
+      $("#purchases").toggleClass("hidden");
+      $("#purchases").animate({opacity: 1.0}, function(){
+        tracker = "#purchases"; 
+      });
+    })
+  }
+
+ 
+}); 
+
+}); 
