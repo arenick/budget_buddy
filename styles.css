@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500');
+
 * {
   margin: 0;
   padding: 0;
@@ -6,7 +8,8 @@
 body {
   background: #282f3e;
   color: #e9f0f4;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  /* font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
+  font-family: 'Roboto', sans-serif;
 }
 
 /* Header Menu */
@@ -79,15 +82,15 @@ body {
 
 /* Weekly Budget Section */
 .enterweeklybudget {
-  /* display: none; */
-  display: flex;
+  display: none;
+  /* display: flex; */
   flex-direction: column;
   width: 60%;
   margin: 0 auto;
 }
 
 .weekly_budget_title {
-  /* display: none; */
+  display: none;
   font-size: 25px;
   font-weight: 100;
   margin: 20px 0px;
@@ -124,6 +127,7 @@ body {
   font-weight: 100;
   border: 2px solid #e9f0f4;
   margin-top: 40px;
+  cursor: pointer;
 }
 
 /* Weekly Total Section */
@@ -131,11 +135,103 @@ body {
   display: none;
 }
 
+.total {
+  background: rgba(233, 240, 244, .15);
+  padding: 8%;
+}
+
+.title {
+  margin-top: 22px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  font-weight: 100;
+}
+
+.total_money, .remaining {
+  text-align: center;
+}
+
+.total_money {
+  font-size: 40px;
+  font-weight: 100;
+}
+.remaining {
+  font-weight: 100;
+}
+
 /* Log Purcheses Section */
 .purchases {
   display: none;
+  margin: 0 auto;
+  width: 60%;
+
 }
 
+/* .greeting {
+  display: flex;
+  flex-direction: column;
+  margin: 50px 0;
+} */
+
+.purchases_form {
+  display: flex;
+  flex-direction: column;
+  margin: 50px 0;
+}
+
+.pur_title {
+  font-size: 25px;
+  font-weight: 100;
+  margin: 20px 0px;
+}
+
+.pur_title_sub {
+  font-weight: 100;
+  font-size: 22px;
+}
+
+.purchases input {
+  background: none;
+  border: none;
+  border-bottom: 2px solid #e9f0f4;
+  margin-bottom: 25px;
+  font-size: 20px;
+  font-weight: 200;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  color: #e9f0f4;
+  outline: none;
+}
+
+.purchases button {
+  background: none;
+  color: #e9f0f4;
+  padding: 20px;
+  font-size: 18px;
+  font-weight: 100;
+  border: 2px solid #e9f0f4;
+  margin-top: 40px;
+  cursor: pointer;
+}
+
+/* Mobile Menu */
+.mobile_menu {
+  background: rgba(233, 240, 244, .9);
+  padding: 10px 0;
+  display: none;
+}
+
+.menu_items {
+  color: #282f3e;
+  margin: 10px 0px;
+  padding: 20px 0px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 100px;
+  cursor: pointer;
+}
 .hidden {
   display: none;
 }
