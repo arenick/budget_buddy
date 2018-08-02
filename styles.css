@@ -6,7 +6,7 @@
 body {
   background: #282f3e;
   color: #e9f0f4;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
 /* Header Menu */
@@ -14,10 +14,12 @@ body {
   display: flex;
   justify-content: space-between;
   /* display: none; */
+  margin: 10px 30px;
+  
 }
 
 .desktop_header {
-  font-size: 20px;
+  font-size: 35px;
 }
 
 .menu {
@@ -31,7 +33,7 @@ body {
 }
 
 .burger {
-  font-size: 20px;
+  font-size: 35px;
 }
 
 /* Log in section */
@@ -75,9 +77,6 @@ body {
 }
 
 
-
-
-
 /* Weekly Budget Section */
 .enterweeklybudget {
   /* display: none; */
@@ -91,14 +90,14 @@ body {
   /* display: none; */
   font-size: 25px;
   font-weight: 100;
-  margin: 50px 0px 25px 0px;
+  margin: 20px 0px;
 }
 
 .weekly_budget_title_sub {
   font-size: 22px;
   font-weight: 100px;
   margin-bottom: 15px;
-  font-weight: 200;
+  font-weight: 100;
 }
 
 .enterweeklybudget input {
@@ -112,12 +111,17 @@ body {
   text-align: center;
 }
 
+.enterweeklybudget label {
+  margin-top: -15px;
+  font-weight: 100;
+}
+
 .save {
   background: none;
   color: #e9f0f4;
   padding: 20px;
-  font-size: 20px;
-  font-weight: 200;
+  font-size: 18px;
+  font-weight: 100;
   border: 2px solid #e9f0f4;
   margin-top: 40px;
 }
