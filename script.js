@@ -9,7 +9,12 @@ let foodEx = 0;
 let entEx = 0; 
 let clothingEx = 0; 
 let billsEx = 0; 
-console.log(personName);
+let incomeBud = 0; 
+let foodBud = 0; 
+let entBud = 0; 
+let clothingBud = 0; 
+let billsBud = 0; 
+
 
 $("body").on("click", ".login_button", (e) => {
     console.log($(".login_form").children().eq(1).val()); 
@@ -27,7 +32,15 @@ $("body").on("click", ".login_button", (e) => {
 });
 
 $("body").on("click" ,".enterweeklybudget .save", (e) => {
-     
+     income = $("#WeeklyTotal").val();
+     foodBud = $("#Food").val();
+     entBud = $("#Entertainment").val(); 
+     clothingBud = $("#Clothing").val();
+     billsBud = $("#Bills").val();
+    $(".enterweeklybudget").fadeOut(2000, function(){
+        $(".enterweeklybudget").toggleClass("hidden");
+        $(".weekly__total--container").toggleClass("hidden");
+    });
 });
 
 
