@@ -22,20 +22,31 @@ $("body").on("click", ".login_button", (e) => {
     personName = $(".login_form").children().eq(0).val();
     $("#log_in_section").fadeOut(2000, function(){
         $("#log_in_section").toggleClass("hidden"); 
-        $("#purchases").toggleClass("hidden");
+        $(".enterweeklybudget").toggleClass("hidden");
     });
-    $(".weekly_budget_title").append(personName); 
-    $("#pinsert").append(personName);
+    $(".weekly_budget_title").append(personName + ","); 
+    $("#pinsert").append(personName + ",");
     console.log(personName);
    
 });
 
 $("body").on("click" ,".enterweeklybudget .save", (e) => {
-     income = $("#WeeklyTotal").val();
-     foodBud = $("#Food").val();
-     entBud = $("#Entertainment").val(); 
-     clothingBud = $("#Clothing").val();
-     billsBud = $("#Bills").val();
+     income = $("#weeklyTotal").val();
+     foodBud = $("#food").val();
+     entBud = $("#entertainment").val(); 
+     clothingBud = $("#clothing").val();
+     billsBud = $("#bills").val();
+    $("#weekly_tot").text(income); 
+    $("#food_total").text(foodBud); 
+    $("#ent_total").text(entBud); 
+    $("#clothing_total").text(clothingBud); 
+    $("#bills_total").text(billsBud); 
+    $("#total_remaining").text(`Remaining: ${income}`); 
+    $("#food_remaining").text(`Remaining: ${foodBud}`); 
+    $("#ent_remaining").text(`Remaining: ${entBud}`); 
+    $("#clothing_remaining").text(`Remaining: ${clothingBud}`); 
+    $("#bills_remaining").text(`Remaining: ${billsBud}`); 
+
     $(".enterweeklybudget").fadeOut(2000, function(){
         $(".enterweeklybudget").toggleClass("hidden");
         $(".weekly__total--container").toggleClass("hidden");

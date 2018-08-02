@@ -5,6 +5,12 @@
   padding: 0;
 }
 
+input{
+  color: none; 
+  background: transparent;
+  border: none; 
+}
+
 body {
   background: #282f3e;
   color: #e9f0f4;
@@ -16,7 +22,7 @@ body {
 .menu_container {
   display: flex;
   justify-content: space-between;
-  /* display: none; */
+  
   margin: 10px 30px;
   
 }
@@ -31,7 +37,6 @@ body {
 }
 
 .menu_item {
-  display: none;
   margin-left: 10px;
 }
 
@@ -44,7 +49,7 @@ body {
   width: 50%;
   margin: 100px auto;
   text-align: center;
-  display: none;
+  
 }
 
 .login_form {
@@ -67,6 +72,7 @@ body {
   font-weight: 200;
   padding: 10px;
   text-align: center;
+  color: #e9f0f4; 
 }
 
 .login_button {
@@ -82,15 +88,15 @@ body {
 
 /* Weekly Budget Section */
 .enterweeklybudget {
-  display: none;
-  /* display: flex; */
+  
+  display: flex; 
   flex-direction: column;
   width: 60%;
   margin: 0 auto;
 }
 
 .weekly_budget_title {
-  display: none;
+  
   font-size: 25px;
   font-weight: 100;
   margin: 20px 0px;
@@ -112,6 +118,7 @@ body {
   font-weight: 200;
   padding: 10px;
   text-align: center;
+  color: #e9f0f4;
 }
 
 .enterweeklybudget label {
@@ -132,7 +139,7 @@ body {
 
 /* Weekly Total Section */
 .weekly__total--container {
-  display: none;
+ 
 }
 
 .total {
@@ -161,7 +168,7 @@ body {
 
 /* Log Purcheses Section */
 .purchases {
-  display: none;
+  
   margin: 0 auto;
   width: 60%;
 
@@ -220,7 +227,6 @@ body {
 .mobile_menu {
   background: rgba(233, 240, 244, .9);
   padding: 10px 0;
-  display: none;
 }
 
 .menu_items {
