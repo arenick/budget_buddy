@@ -4,16 +4,15 @@ $(document).ready(() => {
 
 let personName = undefined; 
 let personEmail = undefined; 
-let income = 0; 
-let foodEx = 0; 
-let entEx = 0; 
-let clothingEx = 0; 
-let billsEx = 0; 
-let incomeBud = 0; 
-let foodBud = 0; 
-let entBud = 0; 
-let clothingBud = 0; 
-let billsBud = 0; 
+let income = ("");
+let foodEx = (""); 
+let entEx = ("");
+let clothingEx =  ("")
+let billsEx = ("");
+let foodBud =("");
+let entBud =("");
+let clothingBud = ("");
+let billsBud = ("");
 
 
 $("body").on("click", ".login_button", (e) => {
@@ -40,8 +39,17 @@ $("body").on("click" ,".enterweeklybudget .save", (e) => {
     $(".enterweeklybudget").fadeOut(2000, function(){
         $(".enterweeklybudget").toggleClass("hidden");
         $(".weekly__total--container").toggleClass("hidden");
+        WeeklyTotal();
     });
 });
 
+ let WeeklyTotal= (e)=>{
+     let myMoney= parseInt(income.replace(/[^0-9\.]+/g,''));
+     let myFood= parseInt(foodBud.replace(/[^0-9\.]+/g,''));
+     let myEnt= parseInt(entBud.replace(/[^0-9\.]+/g,''));
+     let myclothes= parseInt(clothingBud.replace(/[^0-9\.]+/g,''));
+     let myBills= parseInt(billsBud.replace(/[^0-9\.]+/g,''));
+    
+ }
 
 });
