@@ -13,7 +13,7 @@ body {
 .menu_container {
   display: flex;
   justify-content: space-between;
-  display: none;
+  /* display: none; */
 }
 
 .desktop_header {
@@ -39,6 +39,7 @@ body {
   width: 50%;
   margin: 100px auto;
   text-align: center;
+  display: none;
 }
 
 .login_form {
@@ -49,6 +50,7 @@ body {
 .mobile_header {
  margin-bottom: 80px;
  font-size: 40px;
+ font-weight: 150;
 }
 
 .login_form input {
@@ -78,11 +80,46 @@ body {
 
 /* Weekly Budget Section */
 .enterweeklybudget {
-  display: none;
+  /* display: none; */
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 0 auto;
 }
 
 .weekly_budget_title {
-  display: none;
+  /* display: none; */
+  font-size: 25px;
+  font-weight: 100;
+  margin: 50px 0px 25px 0px;
+}
+
+.weekly_budget_title_sub {
+  font-size: 22px;
+  font-weight: 100px;
+  margin-bottom: 15px;
+  font-weight: 200;
+}
+
+.enterweeklybudget input {
+  background: none;
+  border: none;
+  border-bottom: 2px solid #e9f0f4;
+  margin-bottom: 25px;
+  font-size: 20px;
+  font-weight: 200;
+  padding: 10px;
+  text-align: center;
+}
+
+.save {
+  background: none;
+  color: #e9f0f4;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 200;
+  border: 2px solid #e9f0f4;
+  margin-top: 40px;
 }
 
 /* Weekly Total Section */
@@ -92,5 +129,9 @@ body {
 
 /* Log Purcheses Section */
 .purchases {
+  display: none;
+}
+
+.hidden {
   display: none;
 }
