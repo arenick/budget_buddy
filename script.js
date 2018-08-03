@@ -75,33 +75,37 @@ $("body").on("click", "section ul a.burger", (e) => {
 // Click Event for menu items
 let homeButton = $("body").on("click", "#home", (e) => {
   $('#home').off('click');
-  
+  disablePointer(e.target); 
   console.log(e);
   if(tracker === ".weekly__total--container"){
+    setTimeout(function(){enablePointer(e.target);}, 1);
     return; 
   }
-  if (tracker === "#purchases") {
-    $("#purchases").animate({opacity: 0.0}, 1000, function(){
+  else if (tracker === "#purchases") {
+    $("#purchases").animate({opacity: 0.0}, 750, function(){
       $("#purchases").toggleClass("hidden");
       $(".weekly__total--container").toggleClass("hidden");
-      $(".weekly__total--container").animate({opacity: 1.0}, 1000, function(){
+      $(".weekly__total--container").animate({opacity: 1.0}, 750, function(){
         tracker = ".weekly__total--container"; 
         $('#home').on('click');
-        setTimeout(function(){}, 200);
+        setTimeout(function(){enablePointer(e.target);}, 1500);
       });
     }); 
   }
-  if(tracker === ".enterweeklybudget"){
-    $(".enterweeklybudget").animate({opacity: 0.0},1000, function(){
+  else if(tracker === ".enterweeklybudget"){
+    $(".enterweeklybudget").animate({opacity: 0.0},750, function(){
       $(".enterweeklybudget").toggleClass("hidden");
       $(".weekly__total--container").toggleClass("hidden");
-      $(".weekly__total--container").animate({opacity: 1.0}, 1000, function(){
+      $(".weekly__total--container").animate({opacity: 1.0}, 750, function(){
         tracker = ".weekly__total--container"; 
         $('#home').on('click');
-        setTimeout(function(){}, 200);
+        setTimeout(function(){enablePointer(e.target);}, 1500);
       });
     })
 
+  }
+  else{
+    setTimeout(function(){enablePointer(e.target);}, 1);
   }
 
  
@@ -109,29 +113,33 @@ let homeButton = $("body").on("click", "#home", (e) => {
 
 let editButton = $("body").on("click", "#edit_budget", (e) => {
   console.log(e.target);
-  
+  disablePointer(e.target);
   if(tracker === ".enterweeklybudget"){
+    setTimeout(function(){enablePointer(e.target);}, 1);
     return; 
   }
-  if (tracker === "#purchases") {
-    $("#purchases").animate({opacity: 0.0}, 1000, function(){
+  else if (tracker === "#purchases") {
+    $("#purchases").animate({opacity: 0.0}, 750, function(){
       $("#purchases").toggleClass("hidden");
       $(".enterweeklybudget").toggleClass("hidden");
-      $(".enterweeklybudget").animate({opacity: 1.0}, 1000, function(){
+      $(".enterweeklybudget").animate({opacity: 1.0}, 750, function(){
         tracker = ".enterweeklybudget"; 
-        setTimeout(function(){}, 200);
+        setTimeout(function(){enablePointer(e.target);}, 1500);
       });
     }); 
   }
-  if(tracker === ".weekly__total--container"){
-    $(".weekly__total--container").animate({opacity: 0.0}, 1000, function(){
+  else if(tracker === ".weekly__total--container"){
+    $(".weekly__total--container").animate({opacity: 0.0}, 750, function(){
       $(".weekly__total--container").toggleClass("hidden");
       $(".enterweeklybudget").toggleClass("hidden");
-      $(".enterweeklybudget").animate({opacity : 1.0}, 1000, function(){
+      $(".enterweeklybudget").animate({opacity : 1.0}, 750, function(){
         tracker = ".enterweeklybudget"; 
-        setTimeout(function(){}, 200);
+        setTimeout(function(){enablePointer(e.target);}, 1500);
       });
     })
+  }
+  else{
+    setTimeout(function(){enablePointer(e.target);}, 1);
   }
 
  
@@ -139,42 +147,49 @@ let editButton = $("body").on("click", "#edit_budget", (e) => {
 
 let logButton = $("body").on("click", "#log_purchases", (e) => {
   console.log(e);
-  
+  disablePointer(e.target);
   if(tracker === "#purchases"){
+    setTimeout(function(){enablePointer(e.target);}, 1);
     return; 
   }
-  if (tracker === ".weekly__total--container") {
-    $("#purchases").animate({opacity: 0.0}, 1000, function(){
+  else if (tracker === ".weekly__total--container") {
+    $("#purchases").animate({opacity: 0.0}, 750, function(){
       $("#purchases").toggleClass("hidden");
       $(".weekly__total--container").toggleClass("hidden");
-      $("#purchases").animate({opacity: 1.0}, 1000, function(){
+      $("#purchases").animate({opacity: 1.0}, 750, function(){
         tracker = "#purchases"; 
-        setTimeout(function(){}, 200);
+        setTimeout(function(){enablePointer(e.target);}, 1500);
       });
     }); 
   }
-  if(tracker === ".enterweeklybudget"){
-    $("#purchases").animate({opacity: 0.0}, 1000, function(){
+  else if(tracker === ".enterweeklybudget"){
+    $("#purchases").animate({opacity: 0.0}, 750, function(){
       $(".enterweeklybudget").toggleClass("hidden");
       $("#purchases").toggleClass("hidden");
       $("#purchases").animate({opacity: 1.0}, function(){
         tracker = "#purchases"; 
-        setTimeout(function(){}, 200);
+        setTimeout(function(){enablePointer(e.target)}, 1500);
       });
     })
   }
+  else{
+    setTimeout(function(){enablePointer(e.target);}, 1);
+  }
 
-  homeButton();
-  editButton();
-  logButton();
+ 
  
 }); 
+console.log(homeButton);
+console.log(editButton);
+console.log(editButton);
 let disablePointer = (el) => {
-
+    $(el).css("pointer-events", "none");
+    
 }
 
 let enablePointer = (el) => {
-
+    $(el).css("pointer-events", "auto");
 }
+
 
 }); 
