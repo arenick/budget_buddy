@@ -182,6 +182,7 @@ let logButton = $("body").on("click", "#log_purchases", (e) => {
 console.log(homeButton);
 console.log(editButton);
 console.log(editButton);
+
 let disablePointer = (el) => {
     $(el).css("pointer-events", "none");
     
