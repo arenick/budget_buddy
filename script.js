@@ -5,10 +5,10 @@ $(document).ready(() => {
 let personName = undefined; 
 let personEmail = undefined; 
 let income = ("");
-let foodEx = (""); 
-let entEx = ("");
-let clothingEx =  ("")
-let billsEx = ("");
+let foodEx = 0; 
+let entEx = 0;
+let clothingEx =  0;
+let billsEx = 0;
 let foodBud =("");
 let entBud =("");
 let clothingBud = ("");
@@ -40,16 +40,53 @@ $("body").on("click" ,".enterweeklybudget .save", (e) => {
      entBud = $("#entertainment").val(); 
      clothingBud = $("#clothing").val();
      billsBud = $("#bills").val();
-    $("#weekly_tot").text(income); 
-    $("#food_total").text(foodBud); 
-    $("#ent_total").text(entBud); 
-    $("#clothing_total").text(clothingBud); 
-    $("#bills_total").text(billsBud); 
-    $("#total_remaining").text(`Remaining: ${income}`); 
-    $("#food_remaining").text(`Remaining: ${foodBud}`); 
-    $("#ent_remaining").text(`Remaining: ${entBud}`); 
-    $("#clothing_remaining").text(`Remaining: ${clothingBud}`); 
-    $("#bills_remaining").text(`Remaining: ${billsBud}`); 
+   
+    
+   
+ 
+    if(!income.replace(/[^0-9\.]+/g,'')){
+      $("#weekly_tot").text("0"); 
+      $("#total_remaining").text(`Remaining: 0`);
+    }
+    else{
+      $("#weekly_tot").text(income); 
+      $("#total_remaining").text(`Remaining: ${income}`);
+    }
+
+    if(!foodBud.replace(/[^0-9\.]+/g,'')){
+      $("#food_total").text("0") 
+      $("#food_remaining").text(`Remaining: 0`);
+    }
+    else{
+      $("#food_total").text(foodBud); 
+      $("#food_remaining").text(`Remaining: ${foodBud}`);
+    } 
+
+    if(!entBud.replace(/[^0-9\.]+/g,'')){
+      $("#ent_total").text("0"); 
+      $("#ent_remaining").text(`Remaining: 0`);
+    }else{
+      $("#ent_total").text(entBud); 
+      $("#ent_remaining").text(`Remaining: ${entBud}`);
+    }
+
+    if(!clothingBud.replace(/[^0-9\.]+/g,'')){
+      $("#clothing_total").text('0'); 
+      $("clothing_remaining").text(`Remaining: 0`); 
+    }
+    else{
+      $("#clothing_total").text(clothingBud); 
+      $("#clothing_remaining").text(`Remaining: ${clothingBud}`);
+    } 
+
+    if(!parseInt(billsBud.replace(/[^0-9\.]+/g,''))){
+      $("#bills_total").text("0");
+      $("#bills_remaining").text(`Remaining: 0`); 
+    }
+    else{
+      $("#bills_total").text(billsBud);
+      $("#bills_remaining").text(`Remaining: ${billsBud}`); 
+    }
 
     $(".enterweeklybudget").animate({opacity: 0.0}, 1000, function(){
         $(".enterweeklybudget").toggleClass("hidden");
@@ -57,7 +94,7 @@ $("body").on("click" ,".enterweeklybudget .save", (e) => {
         tracker = ".weekly__total--container"; 
         console.log(tracker);
       });
-    WeeklyTotal();
+    // WeeklyTotal();
     //if(opacity of .weekly__total--container){
       show();
     //}
@@ -67,14 +104,81 @@ let show = () => {
     $(".weekly__total--container").animate({opacity: 1}, 1000);
 }
 
- let WeeklyTotal = (e) => {
+$("body").on("click", "#purchases #pur-log .save, ", (e) => {
+    let myMoney = parseInt(income.replace(/[^0-9\.]+/g,''));
+    let myFood = parseInt(foodBud.replace(/[^0-9\.]+/g,''));
+    let myEnt = parseInt(entBud.replace(/[^0-9\.]+/g,''));
+    let myclothes = parseInt(clothingBud.replace(/[^0-9\.]+/g,''));
+    let myBills = parseInt(billsBud.replace(/[^0-9\.]+/g,'')); 
+
+    let food_pur = parseInt(document.querySelector("#food-price-log").value.replace(/[^0-9\.]+/g,''));
+   
+    let ent_pur = parseInt(document.querySelector("#ent-price-log").value.replace(/[^0-9\.]+/g,''));
+
+    let clothing_pur = parseInt(document.querySelector("#clothing-price-log").value.replace(/[^0-9\.]+/g,''));
+
+    let bills_pur = parseInt(document.querySelector("#bills-price-log").value.replace(/[^0-9\.]+/g,''));
+    
+    let food_re = parseInt(document.querySelector("#food_remaining").textContent.replace(/[^0-9\.]+/g,'')); 
+    let ent_rem = parseInt(document.querySelector("#ent_remaining").textContent.replace(/[^0-9\.]+/g,'')); 
+    let clothing_rem = parseInt(document.querySelector("#clothing_remaining").textContent.replace(/[^0-9\.]+/g,'')); 
+
+    let bills_rem = parseInt(document.querySelector("#bills_remaining").textContent.replace(/[^0-9\.]+/g,''));
+
+    let total = parseInt(document.querySelector("#total_remaining").textContent.replace(/[^0-9\.]+/g,''));
+
+    if(!total){
+      total = 0; 
+    }
+
+    if(!food_re){
+      food_re = 0; 
+      console.log(food_re);
+    }
+   
+    if(!ent_rem){
+      ent_rem = 0; 
+    }
+
+    if(!clothing_rem){
+      clothing_rem = 0; 
+    }
+
+    if(!bills_rem){
+      bills_rem = 0; 
+    }
+
+    if(!food_pur){
+      food_pur = 0;
+    }
+    if(!ent_pur){
+      ent_pur = 0; 
+    }
+    if(!clothing_pur){
+      clothing_pur = 0; 
+    }
+    if(!bills_pur){
+      bills_pur = 0; 
+    }
+
+    food_re = food_re - food_pur;
+    ent_rem = ent_rem - ent_pur; 
+    clothing_rem = clothing_rem - clothing_pur; 
+    bills_rem = bills_rem - bills_pur; 
+
+    
+
+
+    total = total - (food_pur + ent_pur + bills_pur + clothing_pur); 
+
+
+    document.getElementById("food_remaining").innerHTML = "Remaning: " + food_re; 
+    document.getElementById("ent_remaining").innerHTML = "Remaning: " + ent_rem; 
+    document.getElementById("clothing_remaining").innerHTML = "Remaining: " + clothing_rem; 
+    document.getElementById("bills_remaining").innerHTML = "Remaining: " + bills_rem; 
+    document.getElementById("total_remaining").innerHTML = "Remaining: " + total; 
+});
  
-     let myMoney = parseInt(income.replace(/[^0-9\.]+/g,''));
-     let myFood = parseInt(foodBud.replace(/[^0-9\.]+/g,''));
-     let myEnt = parseInt(entBud.replace(/[^0-9\.]+/g,''));
-     let myclothes = parseInt(clothingBud.replace(/[^0-9\.]+/g,''));
-     let myBills = parseInt(billsBud.replace(/[^0-9\.]+/g,'')); 
- }
 
 // Hamburger Menu Slide Down Click Event
 $("body").on("click", "section ul a.burger", (e) => {
@@ -201,5 +305,11 @@ let enablePointer = (el) => {
     $(el).css("pointer-events", "auto");
 }
 
+let calculateBudget = () => {
+  let weekly_budget = parseInt(document.querySelector(".weekly"))
+}
+
 
 }); 
+
+
