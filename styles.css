@@ -32,6 +32,7 @@ body {
   font-size: 35px;
 }
 
+/* hamberger menu */
 .menu {
   display: flex;
   list-style: none;
@@ -89,12 +90,12 @@ body {
 
 /* Weekly Budget Section */
 .enterweeklybudget {
-  
   display: flex; 
   flex-direction: column;
   justify-content: flex-start;
-  width: 400px;
+  width: 30%;
   margin: 0;
+
 
 }
 
@@ -141,20 +142,26 @@ body {
   cursor: pointer;
 }
 
-/* Weekly Total Section */
-/*.weekly__total--container {
- display:flex;}*/
+/* / Weekly Total Section */ 
+ .weekly__total--container {
+ display:flex;
+ width: 60%;
+ justify-content: center;
+ }
  
- 
- 
+ .weekly__total {
+   width: 100%;
+   border: 3px solid #191e27;
+ }
 
 
 .total {
   display: flex;
   justify-content: center;
   background: rgba(233, 240, 244, .15);
-  padding: 8%;
-  width: 500px;
+  padding: 1%;
+
+  /* width: 500px; */
 
 }
 
@@ -179,24 +186,21 @@ body {
 
 /* Log Purcheses Section */
 .purchases {
-  
-  margin: 0;
-  width: 400px;
-  height: 500px;
+  width: 30%; 
 
 }
 
-/* .greeting {
+.greeting {
   display: flex;
   flex-direction: column;
-  margin: 50px 0;
-} */
+
+} 
 
 .purchases_form {
   display: flex;
   justify-content:center;
   flex-direction: column;
-  width: 300px;
+  width: 100%;
 }
 
 .pur_title {
@@ -239,11 +243,10 @@ body {
   margin-top: 40px;
   cursor: pointer;
 }
-.pur-log{
-  display: flex;
-  justify-content: flex-end;
 
-}
+  
+
+
 
 /* Mobile Menu */
 .mobile_menu {
@@ -267,12 +270,7 @@ body {
 
 .containerdesktop{
   display: flex;
-  justify-content: center;
-  flex-direction: space-between;
-  width: 100;
-  padding: 0px;
-
-
+  justify-content: space-evenly;
 }
 
 }
