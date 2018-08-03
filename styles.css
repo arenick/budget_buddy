@@ -89,7 +89,6 @@
   
   /* Weekly Budget Section */
   .enterweeklybudget {
-    
     display: flex; 
     flex-direction: column;
     width: 60%;
@@ -169,10 +168,8 @@
   
   /* Log Purcheses Section */
   .purchases {
-    
     margin: 0 auto;
     width: 60%;
-  
   }
   
   /* .greeting {
@@ -247,17 +244,38 @@
   @media only screen and (min-width: 769px) {
     .log_in_section, .burger, .mobile_menu {
      display: none;
-      
     }
     
     .containerdesktop {
       display: flex;
-
+      height: 100vh;
     }
 
     .hidden {
       display: block;
     }
   
+    .enterweeklybudget {
+      justify-content: center;
+      width: 15%; 
+      padding: 5%;
+    }
 
+    .weekly__total--container {
+      display:flex;
+      width: 60%;
+      justify-content: center;
+    }
+
+    div.weekly__total {
+      width: 100%;
+    }
+
+    .purchases {
+      display: flex;
+      justify-content: center;
+      margin: 0 auto;
+      width: 15%; 
+      padding: 5%;
+    }
   }
