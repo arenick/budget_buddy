@@ -18,8 +18,7 @@ let tracker = undefined;
 
 
 $("body").on("click", ".login_button", (e) => {
-    console.log($(".login_form").children().eq(1).val()); 
-    console.log($(".login_form").children().eq(0).val()); 
+    
     personEmail = $(".login_form").children().eq(1).val();
     personName = $(".login_form").children().eq(0).val();
     $("#log_in_section").animate({opacity: 0.0}, 1000, function(){
@@ -28,8 +27,8 @@ $("body").on("click", ".login_button", (e) => {
     });
     $(".weekly_budget_title").append(personName + ","); 
     $("#pinsert").append(personName + ",");
-    console.log(personName);
-   
+    
+     
 });
 
 $("body").on("click" ,".enterweeklybudget .save", (e) => {
@@ -74,9 +73,10 @@ $("body").on("click", "section ul a.burger", (e) => {
 });
 
 // Click Event for menu items
-$("body").on("click", "#home", (e) => {
+let homeButton = $("body").on("click", "#home", (e) => {
   $('#home').off('click');
-  console.log(e.target);
+  
+  console.log(e);
   if(tracker === ".weekly__total--container"){
     return; 
   }
@@ -87,6 +87,7 @@ $("body").on("click", "#home", (e) => {
       $(".weekly__total--container").animate({opacity: 1.0}, 1000, function(){
         tracker = ".weekly__total--container"; 
         $('#home').on('click');
+        setTimeout(function(){}, 200);
       });
     }); 
   }
@@ -97,6 +98,7 @@ $("body").on("click", "#home", (e) => {
       $(".weekly__total--container").animate({opacity: 1.0}, 1000, function(){
         tracker = ".weekly__total--container"; 
         $('#home').on('click');
+        setTimeout(function(){}, 200);
       });
     })
 
@@ -105,8 +107,9 @@ $("body").on("click", "#home", (e) => {
  
 }); 
 
-$("body").on("click", "#edit_budget", (e) => {
+let editButton = $("body").on("click", "#edit_budget", (e) => {
   console.log(e.target);
+  
   if(tracker === ".enterweeklybudget"){
     return; 
   }
@@ -116,6 +119,7 @@ $("body").on("click", "#edit_budget", (e) => {
       $(".enterweeklybudget").toggleClass("hidden");
       $(".enterweeklybudget").animate({opacity: 1.0}, 1000, function(){
         tracker = ".enterweeklybudget"; 
+        setTimeout(function(){}, 200);
       });
     }); 
   }
@@ -125,6 +129,7 @@ $("body").on("click", "#edit_budget", (e) => {
       $(".enterweeklybudget").toggleClass("hidden");
       $(".enterweeklybudget").animate({opacity : 1.0}, 1000, function(){
         tracker = ".enterweeklybudget"; 
+        setTimeout(function(){}, 200);
       });
     })
   }
@@ -132,8 +137,9 @@ $("body").on("click", "#edit_budget", (e) => {
  
 }); 
 
-$("body").on("click", "#log_purchases", (e) => {
-  console.log(e.target);
+let logButton = $("body").on("click", "#log_purchases", (e) => {
+  console.log(e);
+  
   if(tracker === "#purchases"){
     return; 
   }
@@ -143,6 +149,7 @@ $("body").on("click", "#log_purchases", (e) => {
       $(".weekly__total--container").toggleClass("hidden");
       $("#purchases").animate({opacity: 1.0}, 1000, function(){
         tracker = "#purchases"; 
+        setTimeout(function(){}, 200);
       });
     }); 
   }
@@ -152,11 +159,22 @@ $("body").on("click", "#log_purchases", (e) => {
       $("#purchases").toggleClass("hidden");
       $("#purchases").animate({opacity: 1.0}, function(){
         tracker = "#purchases"; 
+        setTimeout(function(){}, 200);
       });
     })
   }
 
+  homeButton();
+  editButton();
+  logButton();
  
 }); 
+let disablePointer = (el) => {
+
+}
+
+let enablePointer = (el) => {
+
+}
 
 }); 
