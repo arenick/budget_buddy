@@ -15,7 +15,9 @@ let clothingBud = ("");
 let billsBud = ("");
 let tracker = undefined; 
 //global variables 
-
+//if(screen size is > 768px){
+    //.weekly__total--container.css({opacity: 1.0});
+//}
 
 $("body").on("click", ".login_button", (e) => {
     
@@ -56,15 +58,22 @@ $("body").on("click" ,".enterweeklybudget .save", (e) => {
         console.log(tracker);
       });
     WeeklyTotal();
+    //if(opacity of .weekly__total--container){
+      show();
+    //}
 });
 
+let show = () => {
+    $(".weekly__total--container").animate({opacity: 1}, 1000);
+}
+
  let WeeklyTotal = (e) => {
-  $(".weekly__total--container").animate({opacity: 1}, 1000);
-     let myMoney= parseInt(income.replace(/[^0-9\.]+/g,''));
-     let myFood= parseInt(foodBud.replace(/[^0-9\.]+/g,''));
-     let myEnt= parseInt(entBud.replace(/[^0-9\.]+/g,''));
-     let myclothes= parseInt(clothingBud.replace(/[^0-9\.]+/g,''));
-     let myBills= parseInt(billsBud.replace(/[^0-9\.]+/g,'')); 
+ 
+     let myMoney = parseInt(income.replace(/[^0-9\.]+/g,''));
+     let myFood = parseInt(foodBud.replace(/[^0-9\.]+/g,''));
+     let myEnt = parseInt(entBud.replace(/[^0-9\.]+/g,''));
+     let myclothes = parseInt(clothingBud.replace(/[^0-9\.]+/g,''));
+     let myBills = parseInt(billsBud.replace(/[^0-9\.]+/g,'')); 
  }
 
 // Hamburger Menu Slide Down Click Event
