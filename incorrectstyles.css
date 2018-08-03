@@ -1,0 +1,266 @@
+    /* Header Menu */
+    .menu_container {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 30px;
+    }
+    
+    .desktop_header {
+      font-size: 35px;
+    }
+    
+    
+    /* Hide mobile login and header */
+    
+    .mobile_menu {
+      display: none;
+    }
+    
+    .log_in_section {
+      display: none;
+    }
+    
+    /* hamberger menu */
+    
+    /* .menu {
+      display: flex;
+      list-style: none;
+    }
+    
+    .menu_item {
+      margin-left: 10px;
+    }
+    
+    .burger {
+      font-size: 35px;
+    } */
+    
+    /* Log in section */
+    .log_in_section {
+      width: 50%;
+      margin: 100px auto;
+      text-align: center;
+      
+    }
+    
+    .login_form {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    
+    
+    .login_form input {
+      background: none;
+      border: none;
+      border-bottom: 2px solid #e9f0f4;
+      margin-bottom: 50px;
+      font-size: 20px;
+      font-weight: 200;
+      padding: 10px;
+      text-align: center;
+      color: #e9f0f4; 
+    }
+    
+    .login_button {
+      background: none;
+      color: #e9f0f4;
+      padding: 20px;
+      font-size: 20px;
+      font-weight: 200;
+      border: 2px solid #e9f0f4;
+      margin-top: 50px;
+    }
+    
+    
+    /* Weekly Budget Section */
+    .enterweeklybudget {
+      display: flex; 
+      flex-direction: column;
+      justify-content: center;
+      width: 15%; 
+      padding: 5%;
+      max-height: 100vh;
+    }
+    
+    
+    .weekly_budget_title {
+      display: flex;
+      justify-content: center;
+      font-size: 25px;
+      font-weight: 100;
+      margin: 20px 0px;
+    }
+    
+    .weekly_budget_title_sub {
+      display: flex;
+      justify-content: center;
+      font-weight: 100;
+      font-size: 22px;
+    }
+    
+    .enterweeklybudget input {
+      border-bottom: 2px solid #e9f0f4;
+      margin-bottom: 25px;
+      font-size: 20px;
+      font-weight: 200;
+      padding: 10px;
+      text-align: center;
+      color: #e9f0f4;
+    }
+    
+    .enterweeklybudget label {
+      margin-top: -15px;
+      font-weight: 100;
+    }
+    
+    .save {
+      background: none;
+      color: #e9f0f4;
+      padding: 20px;
+      font-size: 18px;
+      font-weight: 100;
+      border: 2px solid #e9f0f4;
+      margin-top: 40px;
+      cursor: pointer;
+    }
+    
+    /* / Weekly Total Section */ 
+     .weekly__total--container {
+     display:flex;
+     width: 60%;
+     justify-content: center;
+     }
+     
+     .weekly__total {
+       width: 100%;
+       border: 3px solid #191e27;
+     }
+    
+    
+    .total {
+      display: flex;
+      justify-content: center;
+      background: rgba(233, 240, 244, .15);
+      padding: 1%;
+    
+      /* width: 500px; */
+    
+    }
+    
+    .title {
+      margin-top: 22px;
+      padding-bottom: 3px;
+      padding-left: 10px;
+      font-weight: 100;
+    }
+    
+    .total_money, .remaining {
+      text-align: center;
+    }
+    
+    .total_money {
+      font-size: 40px;
+      font-weight: 100;
+    }
+    .remaining {
+      font-weight: 100;
+    }
+    
+    /* Log Purcheses Section */
+    .purchases, .greeting {
+      display: flex; 
+      flex-direction: column;
+      justify-content: center;
+      width: 15%; 
+      padding: 5%;
+      max-height: 100vh;
+    }
+    /* .purchases {
+      width: 15%; 
+      padding: 5%;
+    } */
+    
+    .greeting {
+      display: flex;
+      flex-direction: column;
+    
+    } 
+    
+    .purchases_form {
+      display: flex;
+      justify-content:center;
+      flex-direction: column;
+      width: 100%;
+    }
+    
+    .pur_title {
+      display: flex;
+      justify-content: center;
+      font-size: 25px;
+      font-weight: 100;
+      margin: 20px 0px;
+    }
+    
+    .pur_title_sub {
+      display: flex;
+      justify-content: center;
+      font-weight: 100;
+      font-size: 22px;
+    }
+    
+    .purchases input {
+      background: none;
+      border: none;
+      border-bottom: 2px solid #e9f0f4;
+      margin-bottom: 25px;
+      font-size: 20px;
+      font-weight: 200;
+      padding: 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      color: #e9f0f4;
+      outline: none;
+    }
+    
+    .purchases button {
+      background: none;
+      color: #e9f0f4;
+      padding: 20px;
+      font-size: 18px;
+      font-weight: 100;
+      border: 2px solid #e9f0f4;
+      margin-top: 40px;
+      cursor: pointer;
+    }
+    
+      
+    
+    
+    
+    /* Mobile Menu */
+    .mobile_menu {
+      background: rgba(233, 240, 244, .9);
+      padding: 10px 0;
+    }
+    
+    .menu_items {
+      color: #282f3e;
+      margin: 10px 0px;
+      padding: 20px 0px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 100px;
+      cursor: pointer;
+    }
+    .desktop{
+      display: hidden;
+    
+    }
+    
+    .containerdesktop{
+      display: flex;
+      justify-content: space-evenly;
+    }
+    }
