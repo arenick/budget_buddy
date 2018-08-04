@@ -1,7 +1,9 @@
 "use strict";
 
 $(document).ready(() => {
-
+let start = new Date();
+console.log(start);
+let testTime = function(){return new Date();}
 let personName = undefined; 
 let personEmail = undefined; 
 let income = ("");
@@ -44,7 +46,7 @@ $("body").on("click" ,".enterweeklybudget .save", (e) => {
     
      disablePointer();
     
- 
+
     if(!income){
       $("#weekly_tot").text("$0"); 
       $("#total_remaining").text(`Remaining: $0`);
@@ -138,7 +140,6 @@ $("body").on("click", "#purchases #pur-log .save", (e) => {
 
     if(!food_re){
       food_re = 0; 
-      console.log(food_re);
     }
    
     if(!ent_rem){
@@ -198,14 +199,18 @@ $("body").on("click", "section ul a.burger", (e) => {
 
 // Click Event for menu items
 let homeButton = $("body").on("click", "#home", (e) => {
+  
+  
+
   $('#home').off('click');
   disablePointer(e.target); 
-  console.log(e);
   if(tracker === ".weekly__total--container"){
     setTimeout(function(){enablePointer(e.target);}, 1);
     return; 
   }
   else if (tracker === "#purchases") {
+    console.log("to home from purchases");
+    console.log(start - testTime());
     $("#purchases").animate({opacity: 0.0}, 750, function(){
       $("#purchases").toggleClass("hidden");
       $(".weekly__total--container").toggleClass("hidden");
@@ -217,6 +222,8 @@ let homeButton = $("body").on("click", "#home", (e) => {
     }); 
   }
   else if(tracker === ".enterweeklybudget"){
+    console.log("to home from budget");
+    console.log(start - testTime());
     $(".enterweeklybudget").animate({opacity: 0.0},750, function(){
       $(".enterweeklybudget").toggleClass("hidden");
       $(".weekly__total--container").toggleClass("hidden");
@@ -229,6 +236,8 @@ let homeButton = $("body").on("click", "#home", (e) => {
 
   }
   else{
+    console.log("error home");
+    console.log(testTime);
     setTimeout(function(){enablePointer(e.target);}, 1);
   }
 
@@ -236,13 +245,16 @@ let homeButton = $("body").on("click", "#home", (e) => {
 }); 
 
 let editButton = $("body").on("click", "#edit_budget", (e) => {
-  console.log(e.target);
+  
+  
   disablePointer(e.target);
   if(tracker === ".enterweeklybudget"){
     setTimeout(function(){enablePointer(e.target);}, 1);
     return; 
   }
   else if (tracker === "#purchases") {
+    console.log("to enter budget from purchases");
+    console.log(start - testTime());
     $("#purchases").animate({opacity: 0.0}, 750, function(){
       $("#purchases").toggleClass("hidden");
       $(".enterweeklybudget").toggleClass("hidden");
@@ -253,6 +265,8 @@ let editButton = $("body").on("click", "#edit_budget", (e) => {
     }); 
   }
   else if(tracker === ".weekly__total--container"){
+    console.log("to enter budget from home");
+    console.log(start - testTime());
     $(".weekly__total--container").animate({opacity: 0.0}, 750, function(){
       $(".weekly__total--container").toggleClass("hidden");
       $(".enterweeklybudget").toggleClass("hidden");
@@ -263,6 +277,7 @@ let editButton = $("body").on("click", "#edit_budget", (e) => {
     })
   }
   else{
+    console.log("error enter budget");
     setTimeout(function(){enablePointer(e.target);}, 1);
   }
 
@@ -270,13 +285,16 @@ let editButton = $("body").on("click", "#edit_budget", (e) => {
 }); 
 
 let logButton = $("body").on("click", "#log_purchases", (e) => {
-  console.log(e);
+  
+  
   disablePointer(e.target);
   if(tracker === "#purchases"){
     setTimeout(function(){enablePointer(e.target);}, 1);
     return; 
   }
   else if (tracker === ".weekly__total--container") {
+    console.log("to purchases from home");
+    console.log(start - testTime());
     $("#purchases").animate({opacity: 0.0}, 750, function(){
       $("#purchases").toggleClass("hidden");
       $(".weekly__total--container").toggleClass("hidden");
@@ -287,6 +305,8 @@ let logButton = $("body").on("click", "#log_purchases", (e) => {
     }); 
   }
   else if(tracker === ".enterweeklybudget"){
+    console.log("to purchases from enter budget");
+    console.log(start - testTime());
     $("#purchases").animate({opacity: 0.0}, 750, function(){
       $(".enterweeklybudget").toggleClass("hidden");
       $("#purchases").toggleClass("hidden");
@@ -297,15 +317,15 @@ let logButton = $("body").on("click", "#log_purchases", (e) => {
     })
   }
   else{
+    console.log("error purchases");
+    console.log(testTime);
     setTimeout(function(){enablePointer(e.target);}, 1);
   }
 
  
  
 }); 
-console.log(homeButton);
-console.log(editButton);
-console.log(editButton);
+
 
 let disablePointer = (el) => {
     $(el).css("pointer-events", "none");
