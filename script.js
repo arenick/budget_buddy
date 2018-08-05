@@ -107,81 +107,85 @@ let afterSave = (theId) => {
       });
 }
 
-$("body").on("click", "#purchases #pur-log .save", (e) => {
+let calculateBudget = () => {
+  parseInt(income.replace(/[^0-9\.]+/g,''));
+  parseInt(foodBud.replace(/[^0-9\.]+/g,''));
+  parseInt(entBud.replace(/[^0-9\.]+/g,''));
+  parseInt(clothingBud.replace(/[^0-9\.]+/g,''));
+  parseInt(billsBud.replace(/[^0-9\.]+/g,'')); 
+
+  let food_pur = parseInt(document.querySelector("#food-price-log").value.replace(/[^0-9\.]+/g,''));
+ 
+  let ent_pur = parseInt(document.querySelector("#ent-price-log").value.replace(/[^0-9\.]+/g,''));
+
+  let clothing_pur = parseInt(document.querySelector("#clothing-price-log").value.replace(/[^0-9\.]+/g,''));
+
+  let bills_pur = parseInt(document.querySelector("#bills-price-log").value.replace(/[^0-9\.]+/g,''));
+  
+  let food_re = parseInt(document.querySelector("#food_remaining").textContent.replace(/[^0-9\.]+/g,'')); 
+  let ent_rem = parseInt(document.querySelector("#ent_remaining").textContent.replace(/[^0-9\.]+/g,'')); 
+  let clothing_rem = parseInt(document.querySelector("#clothing_remaining").textContent.replace(/[^0-9\.]+/g,'')); 
+
+  let bills_rem = parseInt(document.querySelector("#bills_remaining").textContent.replace(/[^0-9\.]+/g,''));
+
+  let total = parseInt(document.querySelector("#total_remaining").textContent.replace(/[^0-9\.]+/g,''));
+
+  if(!total){
+    total = 0; 
+  }
+
+  if(!food_re){
+    food_re = 0; 
+    console.log(food_re);
+  }
+ 
+  if(!ent_rem){
+    ent_rem = 0; 
+  }
+
+  if(!clothing_rem){
+    clothing_rem = 0; 
+  }
+
+  if(!bills_rem){
+    bills_rem = 0; 
+  }
+
+  if(!food_pur){
+    food_pur = 0;
+  }
+  if(!ent_pur){
+    ent_pur = 0; 
+  }
+  if(!clothing_pur){
+    clothing_pur = 0; 
+  }
+  if(!bills_pur){
+    bills_pur = 0; 
+  }
+
+  food_re = food_re - food_pur;
+  ent_rem = ent_rem - ent_pur; 
+  clothing_rem = clothing_rem - clothing_pur; 
+  bills_rem = bills_rem - bills_pur; 
+
+  
+
+
+  total = total - (food_pur + ent_pur + bills_pur + clothing_pur); 
+
+
+  document.getElementById("food_remaining").innerHTML = "Remaning: $" + food_re; 
+  document.getElementById("clothing_remaining").innerHTML = "Remaining: $" + clothing_rem;
+  document.getElementById("ent_remaining").innerHTML = "Remaining: $" + ent_rem;
+  document.getElementById("bills_remaining").innerHTML = "Remaining: $" + bills_rem; 
+  document.getElementById("total_remaining").innerHTML = "Remaining: $" + total; 
+}
+
+$("body").on("click", "#purchases #pur-log .save", () => {
     tracker = "#purchases";
     disablePointer();
-    let myMoney = parseInt(income.replace(/[^0-9\.]+/g,''));
-    let myFood = parseInt(foodBud.replace(/[^0-9\.]+/g,''));
-    let myEnt = parseInt(entBud.replace(/[^0-9\.]+/g,''));
-    let myclothes = parseInt(clothingBud.replace(/[^0-9\.]+/g,''));
-    let myBills = parseInt(billsBud.replace(/[^0-9\.]+/g,'')); 
-
-    let food_pur = parseInt(document.querySelector("#food-price-log").value.replace(/[^0-9\.]+/g,''));
-   
-    let ent_pur = parseInt(document.querySelector("#ent-price-log").value.replace(/[^0-9\.]+/g,''));
-
-    let clothing_pur = parseInt(document.querySelector("#clothing-price-log").value.replace(/[^0-9\.]+/g,''));
-
-    let bills_pur = parseInt(document.querySelector("#bills-price-log").value.replace(/[^0-9\.]+/g,''));
-    
-    let food_re = parseInt(document.querySelector("#food_remaining").textContent.replace(/[^0-9\.]+/g,'')); 
-    let ent_rem = parseInt(document.querySelector("#ent_remaining").textContent.replace(/[^0-9\.]+/g,'')); 
-    let clothing_rem = parseInt(document.querySelector("#clothing_remaining").textContent.replace(/[^0-9\.]+/g,'')); 
-
-    let bills_rem = parseInt(document.querySelector("#bills_remaining").textContent.replace(/[^0-9\.]+/g,''));
-
-    let total = parseInt(document.querySelector("#total_remaining").textContent.replace(/[^0-9\.]+/g,''));
-
-    if(!total){
-      total = 0; 
-    }
-
-    if(!food_re){
-      food_re = 0; 
-      console.log(food_re);
-    }
-   
-    if(!ent_rem){
-      ent_rem = 0; 
-    }
-
-    if(!clothing_rem){
-      clothing_rem = 0; 
-    }
-
-    if(!bills_rem){
-      bills_rem = 0; 
-    }
-
-    if(!food_pur){
-      food_pur = 0;
-    }
-    if(!ent_pur){
-      ent_pur = 0; 
-    }
-    if(!clothing_pur){
-      clothing_pur = 0; 
-    }
-    if(!bills_pur){
-      bills_pur = 0; 
-    }
-
-    food_re = food_re - food_pur;
-    ent_rem = ent_rem - ent_pur; 
-    clothing_rem = clothing_rem - clothing_pur; 
-    bills_rem = bills_rem - bills_pur; 
-
-    
-
-
-    total = total - (food_pur + ent_pur + bills_pur + clothing_pur); 
-
-
-    document.getElementById("food_remaining").innerHTML = "Remaning: $" + ent_rem; 
-    document.getElementById("clothing_remaining").innerHTML = "Remaining: $" + clothing_rem; 
-    document.getElementById("bills_remaining").innerHTML = "Remaining: $" + bills_rem; 
-    document.getElementById("total_remaining").innerHTML = "Remaining: $" + total; 
-
+    calculateBudget();
     afterSave(tracker);
 
     document.querySelector("#food-price-log").value = "";

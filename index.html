@@ -35,76 +35,78 @@
     </section>
 
 <!-- Desktop navagation and mobile hamburger menu -->
+    <section class="main_content_container">
+        <section class="enterweeklybudget hidden">
+            <p class="weekly_budget_title">Hey </p>
+            <p class="weekly_budget_title_sub">Enter your weekly budget</p>
+            <input type="text" id="weeklyTotal" name="Weekly Total">
+            <label for="Weekly Total">Weekly Total</label>
+            <input type="text" id="food" name="Food">
+            <label for="Food">Food</label>
+            <input type="text" id="entertainment" name="Entertainment">
+            <label for="Entertainment">Entertainment</label>
+            <input type="text" id="clothing" name="Clothing">
+            <label for="Clothing">Clothing</label>
+            <input type="text" id ="bills" name="Bills">
+            <label for="Bills">Bills</label>
     
-    <section class="enterweeklybudget hidden">
-        <p class="weekly_budget_title">Hey </p>
-        <p class="weekly_budget_title_sub">Enter your weekly budget</p>
-        <input type="text" id="weeklyTotal" name="Weekly Total">
-        <label for="Weekly Total">Weekly Total</label>
-        <input type="text" id="food" name="Food">
-        <label for="Food">Food</label>
-        <input type="text" id="entertainment" name="Entertainment">
-        <label for="Entertainment">Entertainment</label>
-        <input type="text" id="clothing" name="Clothing">
-        <label for="Clothing">Clothing</label>
-        <input type="text" id ="bills" name="Bills">
-        <label for="Bills">Bills</label>
-
-        <button type="button" class="save">Save</button>
+            <button type="button" class="save">Save</button>
+        </section>
+    
+        <!-- Landing page - weekly totals in each category -->
+        <section class="weekly__total--container hidden">
+            <div class="weekly__total">
+                <p class="weekly__total--title title">Weekly Total</p>
+                <div class="total">
+                    <p class="total_money" id="weekly_tot"></p>
+                    <p class="remaining" id="total_remaining">Remaining:</p>
+                </div>
+                <p class="food__total--title title">Food</p>
+                <div class="total">
+                    <p class="total_money" id="food_total"></p>
+                    <p class="remaining" id="food_remaining">Remaining:</p>
+                </div>
+                <p class="entertainment__total--title title">Entertainment</p>
+                <div class="total">
+                    <p class="total_money" id="ent_total"></p>
+                    <p class="remaining" id="ent_remaining">Remaining:</p>
+                </div>
+                <p class="clothing__total--title title">Clothing</p>
+                <div class="total">
+                    <p class="total_money" id="clothing_total"></p>
+                    <p class="remaining" id="clothing_remaining">Remaining:</p>
+                </div>
+                <p class="bills__total--title title">Bills</p>
+                <div class="total">
+                    <p class="total_money" id="bills_total"></p>
+                    <p class="remaining" id="bills_remaining">Remaining:</p>
+                </div>
+            </div>
+        </section>
+      
+        <!-- Log new purchases form -->
+        <section class="purchases hidden" id="purchases">
+            <div class="greeting" id="greeting">
+                <p class="pur_title" id="pinsert">Hey, </p>
+                <p class="pur_title_sub">Log your purchases.</p>
+                <section class="pur-log" id="pur-log">
+                    <form action="" class="purchases_form">
+                        <input type="text" id="food-price-log" name="Food" placeholder="Food">
+                        <!-- <label for="Food">Food</label> -->
+                        <input type="text" id="ent-price-log" name="Entertainment" placeholder="Entertainment">
+                        <!-- <label for="Entertainment">Entertainment</label> -->
+                        <input type="text" id="clothing-price-log" name="Clothing" placeholder="Clothing">
+                        <!-- <label for="Clothing">Clothing</label> -->
+                        <input type="text" id ="bills-price-log" name="Bills" placeholder="Bills">
+                        <!-- <label for="Bills">Bills</label> -->
+    
+                        <button type="button" class="save">Save</button> 
+                    </form>
+                </section>
+            </div>
+        </section>
     </section>
-
-    <!-- Landing page - weekly totals in each category -->
-	<section class="weekly__total--container hidden">
-		<div class="weekly__total">
-			<p class="weekly__total--title title">Weekly Total</p>
-			<div class="total">
-				<p class="total_money" id="weekly_tot"></p>
-				<p class="remaining" id="total_remaining">Remaining:</p>
-			</div>
-			<p class="food__total--title title">Food</p>
-			<div class="total">
-				<p class="total_money" id="food_total"></p>
-				<p class="remaining" id="food_remaining">Remaining:</p>
-			</div>
-			<p class="entertainment__total--title title">Entertainment</p>
-			<div class="total">
-				<p class="total_money" id="ent_total"></p>
-				<p class="remaining" id="ent_remaining">Remaining:</p>
-			</div>
-			<p class="clothing__total--title title">Clothing</p>
-			<div class="total">
-				<p class="total_money" id="clothing_total"></p>
-				<p class="remaining" id="clothing_remaining">Remaining:</p>
-			</div>
-			<p class="bills__total--title title">Bills</p>
-			<div class="total">
-				<p class="total_money" id="bills_total"></p>
-				<p class="remaining" id="bills_remaining">Remaining:</p>
-			</div>
-		</div>
-	</section>
-  
-    <!-- Log new purchases form -->
-    <section class="purchases hidden" id="purchases">
-        <div class="greeting" id="greeting">
-            <p class="pur_title" id="pinsert">Hey, </p>
-            <p class="pur_title_sub">Log your purchases.</p>
-            <section class="pur-log" id="pur-log">
-                <form action="" class="purchases_form">
-                    <input type="text" id="food-price-log" name="Food" placeholder="Food">
-                    <!-- <label for="Food">Food</label> -->
-                    <input type="text" id="ent-price-log" name="Entertainment" placeholder="Entertainment">
-                    <!-- <label for="Entertainment">Entertainment</label> -->
-                    <input type="text" id="clothing-price-log" name="Clothing" placeholder="Clothing">
-                    <!-- <label for="Clothing">Clothing</label> -->
-                    <input type="text" id ="bills-price-log" name="Bills" placeholder="Bills">
-                    <!-- <label for="Bills">Bills</label> -->
-
-                    <button type="button" class="save">Save</button> 
-                </form>
-            </section>
-        </div>
-    </section>
+   
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="script.js"></script>

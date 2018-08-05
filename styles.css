@@ -138,9 +138,9 @@ body {
 }
 
 /* Weekly Total Section */
-.weekly__total--container {
+/* .weekly__total--container {
  
-}
+} */
 
 .total {
   background: rgba(233, 240, 244, .15);
@@ -240,4 +240,44 @@ body {
 }
 .hidden {
   display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .main_content_container {
+    display: flex;
+  }
+
+  .enterweeklybudget, .weekly__total--container, .purchases {
+    display: block;
+  }
+
+  .weekly_budget_form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .weekly__total--container {
+    width: 40%;
+  }
+
+  .save {
+    display: none;
+  }
+
+  .enterweeklybudget {
+    width: 30%;
+  }
+
+  .purchases {
+    width: 30%;
+  }
+
+  .log_in_section {
+    display: none;
+  }
+
+  .menu_header {
+    background: rgba(0, 0, 0, .4);
+   
+  }
 }
