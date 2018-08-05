@@ -15,6 +15,71 @@ let alertToggle = 0;
     //.weekly__total--container.css({opacity: 1.0});
 //}
 
+let budgetSaver = () => {
+  tracker = ".enterweeklybudget"; 
+  income = $("#weeklyTotal").val().replace(/[^0-9\.]+/g,'');
+  foodBud = $("#food").val().replace(/[^0-9\.]+/g,'');
+  entBud = $("#entertainment").val().replace(/[^0-9\.]+/g,''); 
+  clothingBud = $("#clothing").val().replace(/[^0-9\.]+/g,'');
+  billsBud = $("#bills").val().replace(/[^0-9\.]+/g,'');
+  $(".alert").removeClass("alert")
+  $("#alert_food").remove();
+  $("#alert_ent").remove();
+  $("#alert_clothing").remove();
+  $("#alert_bills").remove();
+  $("#alert_total").remove()
+ 
+
+  
+  
+ if(!income){
+   $("#weekly_tot").text("$0"); 
+   $("#total_remaining").text(`Remaining: $0`);
+   console.log("q");
+ }
+ else{
+   $("#weekly_tot").text("$" + income); 
+   $("#total_remaining").text(`Remaining: $${income}`);
+   console.log("r"); 
+ }
+
+ if(!foodBud){
+   $("#food_total").text("$0") 
+   $("#food_remaining").text(`Remaining: $0`);
+ }
+ else{
+   $("#food_total").text("$" + foodBud); 
+   $("#food_remaining").text(`Remaining: $${foodBud}`);
+ } 
+
+ if(!entBud){
+   $("#ent_total").text("$0"); 
+   $("#ent_remaining").text(`Remaining: $0`);
+ }else{
+   $("#ent_total").text("$" + entBud); 
+   $("#ent_remaining").text(`Remaining: $${entBud}`);
+ }
+
+ if(!clothingBud){
+   $("#clothing_total").text('$0'); 
+   $("clothing_remaining").text(`Remaining: $0`); 
+ }
+ else{
+   $("#clothing_total").text("$" + clothingBud); 
+   $("#clothing_remaining").text(`Remaining: $${clothingBud}`);
+ } 
+
+ if(!billsBud){
+   $("#bills_total").text("$0");
+   $("#bills_remaining").text(`Remaining: $0`); 
+ }
+ else{
+   $("#bills_total").text("$" + billsBud);
+   $("#bills_remaining").text(`Remaining: $${billsBud}`); 
+ }
+
+};
+
 $("body").on("click", ".login_button", (e) => {
     
     personName = $(".login_form").children().eq(0).val();
@@ -26,71 +91,14 @@ $("body").on("click", ".login_button", (e) => {
     $("#pinsert").append(personName + ",");   
 });
 
+$("body").on("click", ".enterweeklybudget .second_save", (e) => {
+  budgetSaver();
+})
+
 $("body").on("click" ,".enterweeklybudget .save", (e) => {
-     tracker = ".enterweeklybudget"; 
-     income = $("#weeklyTotal").val().replace(/[^0-9\.]+/g,'');
-     foodBud = $("#food").val().replace(/[^0-9\.]+/g,'');
-     entBud = $("#entertainment").val().replace(/[^0-9\.]+/g,''); 
-     clothingBud = $("#clothing").val().replace(/[^0-9\.]+/g,'');
-     billsBud = $("#bills").val().replace(/[^0-9\.]+/g,'');
-     if (alertToggle > 0) {
-       $(".weekly__total *").removeClass(".alert")
-       $("#alert_food").remove();
-       $("#alert_ent").remove();
-       $("#alert_clothing").remove();
-       $("#alert_bills").remove();
-     }
-     else{
-     
-     }
-     alertToggle++;
 
-     disablePointer();
-     
-    if(!income){
-      $("#weekly_tot").text("$0"); 
-      $("#total_remaining").text(`Remaining: $0`);
-    }
-    else{
-      $("#weekly_tot").text("$" + income); 
-      $("#total_remaining").text(`Remaining: $${income}`);
-    }
-
-    if(!foodBud){
-      $("#food_total").text("$0") 
-      $("#food_remaining").text(`Remaining: $0`);
-    }
-    else{
-      $("#food_total").text("$" + foodBud); 
-      $("#food_remaining").text(`Remaining: $${foodBud}`);
-    } 
-
-    if(!entBud){
-      $("#ent_total").text("$0"); 
-      $("#ent_remaining").text(`Remaining: $0`);
-    }else{
-      $("#ent_total").text("$" + entBud); 
-      $("#ent_remaining").text(`Remaining: $${entBud}`);
-    }
-
-    if(!clothingBud){
-      $("#clothing_total").text('$0'); 
-      $("clothing_remaining").text(`Remaining: $0`); 
-    }
-    else{
-      $("#clothing_total").text("$" + clothingBud); 
-      $("#clothing_remaining").text(`Remaining: $${clothingBud}`);
-    } 
-
-    if(!billsBud){
-      $("#bills_total").text("$0");
-      $("#bills_remaining").text(`Remaining: $0`); 
-    }
-    else{
-      $("#bills_total").text("$" + billsBud);
-      $("#bills_remaining").text(`Remaining: $${billsBud}`); 
-    }
-
+    disablePointer();
+    budgetSaver();
     afterSave(tracker);
 
 });
@@ -170,7 +178,7 @@ let calculateBudget = () => {
   ent_rem = ent_rem - ent_pur; 
   clothing_rem = clothing_rem - clothing_pur; 
   bills_rem = bills_rem - bills_pur; 
-
+  
   if (food_re <0) {
     $("#food_total").addClass("alert");
     let alert = document.createElement("p");
@@ -207,7 +215,16 @@ let calculateBudget = () => {
     $("#bills_total").parent().append(alert);
   }
 
-  total = total - (food_pur + ent_pur + bills_pur + clothing_pur); 
+  total = total - (food_pur + ent_pur + bills_pur + clothing_pur);
+  
+  if (total <0){
+    $("#weekly_tot").addClass("alert");
+    let alert = document.createElement("p");
+    alert.setAttribute("id","alert_total");
+    alert.setAttribute("class","alert");
+    alert.innerHTML= "Yo, you need to chill on the spending!"
+    $("#weekly_tot").parent().append(alert);
+  }
 
   document.getElementById("food_remaining").innerHTML = "Remaning: $" + food_re; 
   document.getElementById("clothing_remaining").innerHTML = "Remaining: $" + clothing_rem;
@@ -216,17 +233,26 @@ let calculateBudget = () => {
   document.getElementById("total_remaining").innerHTML = "Remaining: $" + total; 
 }
 
+$("body").on("click", "#purchases #pur-log .second_save", () => {
+  calculateBudget();
+  clear();
+});
+
 $("body").on("click", "#purchases #pur-log .save", () => {
     tracker = "#purchases";
     disablePointer();
     calculateBudget();
     afterSave(tracker);
-
-    document.querySelector("#food-price-log").value = "";
-    document.querySelector("#clothing-price-log").value = "";
-    document.querySelector("#ent-price-log").value = "";
-    document.querySelector("#bills-price-log").value = "";
+    clear();
 });
+
+let clear = () => {
+  document.querySelector("#food-price-log").value = "";
+  document.querySelector("#clothing-price-log").value = "";
+  document.querySelector("#ent-price-log").value = "";
+  document.querySelector("#bills-price-log").value = "";
+}
+
 
 // Hamburger Menu Slide Down Click Event
 $("body").on("click", "section ul a.burger", (e) => {
