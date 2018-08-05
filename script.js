@@ -112,11 +112,7 @@ let afterSave = (theId) => {
 $("body").on("click", "#purchases #pur-log .save", (e) => {
     tracker = "#purchases";
     disablePointer();
-    let myMoney = parseInt(income.replace(/[^0-9\.]+/g,''));
-    let myFood = parseInt(foodBud.replace(/[^0-9\.]+/g,''));
-    let myEnt = parseInt(entBud.replace(/[^0-9\.]+/g,''));
-    let myclothes = parseInt(clothingBud.replace(/[^0-9\.]+/g,''));
-    let myBills = parseInt(billsBud.replace(/[^0-9\.]+/g,'')); 
+   
 
     let food_pur = parseInt(document.querySelector("#food-price-log").value.replace(/[^0-9\.]+/g,''));
    
