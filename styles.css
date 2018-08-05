@@ -245,6 +245,24 @@
     .log_in_section, .burger, .mobile_menu {
      display: none;
     }
+
+    .mobile_menu {
+      background: #191E27;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+
+    .menu_items {
+      color: #e9f0f4;
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+
+    .menu_container {
+      background:  #191E27;
+      margin: 0px;
+    }
     
     .containerdesktop {
       display: flex;
@@ -259,12 +277,15 @@
       justify-content: center;
       width: 15%; 
       padding: 5%;
+      display: flex;
     }
 
     .weekly__total--container {
       display:flex;
       width: 60%;
       justify-content: center;
+      border: 2px solid #191E27;
+      display: block;
     }
 
     div.weekly__total {
@@ -277,5 +298,6 @@
       margin: 0 auto;
       width: 15%; 
       padding: 5%;
+      display: block;
     }
   }
