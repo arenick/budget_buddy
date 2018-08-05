@@ -3,17 +3,13 @@
 $(document).ready(() => {
 
 let personName = undefined; 
-let personEmail = undefined; 
 let income = ("");
-let foodEx = 0; 
-let entEx = 0;
-let clothingEx =  0;
-let billsEx = 0;
 let foodBud =("");
 let entBud =("");
 let clothingBud = ("");
 let billsBud = ("");
 let tracker = undefined; 
+let alertToggle = 0;
 //global variables 
 //if(screen size is > 768px){
     //.weekly__total--container.css({opacity: 1.0});
@@ -21,16 +17,13 @@ let tracker = undefined;
 
 $("body").on("click", ".login_button", (e) => {
     
-    personEmail = $(".login_form").children().eq(1).val();
     personName = $(".login_form").children().eq(0).val();
     $("#log_in_section").animate({opacity: 0.0}, 1000, function(){
         $("#log_in_section").toggleClass("hidden"); 
         $(".enterweeklybudget").toggleClass("hidden");
     });
     $(".weekly_budget_title").append(personName + ","); 
-    $("#pinsert").append(personName + ",");
-    
-     
+    $("#pinsert").append(personName + ",");   
 });
 
 $("body").on("click" ,".enterweeklybudget .save", (e) => {
@@ -40,11 +33,20 @@ $("body").on("click" ,".enterweeklybudget .save", (e) => {
      entBud = $("#entertainment").val().replace(/[^0-9\.]+/g,''); 
      clothingBud = $("#clothing").val().replace(/[^0-9\.]+/g,'');
      billsBud = $("#bills").val().replace(/[^0-9\.]+/g,'');
-    
-    
+     if (alertToggle > 0) {
+       $(".weekly__total *").removeClass(".alert")
+       $("#alert_food").remove();
+       $("#alert_ent").remove();
+       $("#alert_clothing").remove();
+       $("#alert_bills").remove();
+     }
+     else{
+     
+     }
+     alertToggle++;
+
      disablePointer();
-    
- 
+     
     if(!income){
       $("#weekly_tot").text("$0"); 
       $("#total_remaining").text(`Remaining: $0`);
@@ -169,11 +171,43 @@ let calculateBudget = () => {
   clothing_rem = clothing_rem - clothing_pur; 
   bills_rem = bills_rem - bills_pur; 
 
-  
+  if (food_re <0) {
+    $("#food_total").addClass("alert");
+    let alert = document.createElement("p");
+    alert.setAttribute("id","alert_food");
+    alert.setAttribute("class","alert");
+    alert.innerHTML= "Yo, you need to chill on the spending!"
+    $("#food_total").parent().append(alert);
+  }
 
+  if (ent_rem <0) {
+    $("#ent_total").addClass("alert");
+    let alert = document.createElement("p");
+    alert.setAttribute("id","alert_ent");
+    alert.setAttribute("class","alert");
+    alert.innerHTML= "Yo, you need to chill on the spending!"
+    $("#ent_total").parent().append(alert);
+  }
+
+  if (clothing_rem <0) {
+    $("#clothing_total").addClass("alert");
+    let alert = document.createElement("p");
+    alert.setAttribute("id","alert_clothing");
+    alert.setAttribute("class","alert");
+    alert.innerHTML= "Yo, you need to chill on the spending!"
+    $("#clothing_total").parent().append(alert);
+  }
+
+  if (bills_rem <0) {
+    $("#bills_total").addClass("alert");
+    let alert = document.createElement("p");
+    alert.setAttribute("id","alert_bills");
+    alert.setAttribute("class","alert");
+    alert.innerHTML= "Yo, you need to chill on the spending!"
+    $("#bills_total").parent().append(alert);
+  }
 
   total = total - (food_pur + ent_pur + bills_pur + clothing_pur); 
-
 
   document.getElementById("food_remaining").innerHTML = "Remaning: $" + food_re; 
   document.getElementById("clothing_remaining").innerHTML = "Remaining: $" + clothing_rem;
@@ -193,7 +227,6 @@ $("body").on("click", "#purchases #pur-log .save", () => {
     document.querySelector("#ent-price-log").value = "";
     document.querySelector("#bills-price-log").value = "";
 });
- 
 
 // Hamburger Menu Slide Down Click Event
 $("body").on("click", "section ul a.burger", (e) => {
@@ -270,7 +303,6 @@ let editButton = $("body").on("click", "#edit_budget", (e) => {
     setTimeout(function(){enablePointer(e.target);}, 1);
   }
 
- 
 }); 
 
 let logButton = $("body").on("click", "#log_purchases", (e) => {
@@ -304,8 +336,6 @@ let logButton = $("body").on("click", "#log_purchases", (e) => {
     setTimeout(function(){enablePointer(e.target);}, 1);
   }
 
- 
- 
 }); 
 console.log(homeButton);
 console.log(editButton);
@@ -313,7 +343,6 @@ console.log(editButton);
 
 let disablePointer = (el) => {
     $(el).css("pointer-events", "none");
-    
 }
 
 let enablePointer = (el) => {
