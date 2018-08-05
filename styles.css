@@ -266,7 +266,6 @@
     
     .containerdesktop {
       display: flex;
-      height: 100vh;
     }
 
     .hidden {
