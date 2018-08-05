@@ -76,7 +76,7 @@
     color: #e9f0f4; 
   }
   
-  .login_button {
+  .login_button, .second_login_button {
     background: none;
     color: #e9f0f4;
     padding: 20px;
@@ -84,6 +84,10 @@
     font-weight: 200;
     border: 2px solid #e9f0f4;
     margin-top: 50px;
+  }
+
+  .second_login_button {
+    display: none;
   }
   
   
@@ -254,23 +258,17 @@
 
 
   @media only screen and (min-width: 769px) {
-    .log_in_section, .burger, .mobile_menu {
+    .burger, .mobile_menu {
      display: none;
     }
 
-    /* .mobile_menu {
-      background: #191E27;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-      display: none;
-    } */
+    .second_login_button {
+      display: block;
+    }
 
-    /* .menu_items {
-      color: #e9f0f4;
-      flex-direction: row;
-      justify-content: flex-end;
-    } */
+    .login_button {
+      display: none;
+    }
 
     .menu_container {
       background:  #191E27;
@@ -321,5 +319,9 @@
     }
     .second_save{
       display: block;
+    }
+
+    .desktop-hidden{
+      display: none; 
     }
   }

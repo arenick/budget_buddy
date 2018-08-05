@@ -86,9 +86,24 @@ $("body").on("click", ".login_button", (e) => {
     $("#log_in_section").animate({opacity: 0.0}, 1000, function(){
         $("#log_in_section").toggleClass("hidden"); 
         $(".enterweeklybudget").toggleClass("hidden");
+        $(".containerdesktop").toggleClass("desktop-hidden");
     });
     $(".weekly_budget_title").append(personName + ","); 
     $("#pinsert").append(personName + ",");   
+});
+
+$("body").on("click", ".second_login_button", (e) => {
+    
+  personName = $(".login_form").children().eq(0).val();
+  $("#log_in_section").animate({opacity: 0.0}, 1000, function(){
+      $("#log_in_section").toggleClass("desktop-hidden"); 
+      $(".containerdesktop").toggleClass("desktop-hidden");
+       $(".weekly__total--container").toggleClass("hidden");
+       $("#log_in_section").toggleClass("hidden");
+       tracker = "#purchases"
+  });
+  $(".weekly_budget_title").append(personName + ","); 
+  $("#pinsert").append(personName + ",");   
 });
 
 $("body").on("click", ".enterweeklybudget .second_save", (e) => {
