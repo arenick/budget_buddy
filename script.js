@@ -11,13 +11,25 @@ let billsBud = ("");
 let tracker = undefined; 
 let alertToggle = 0;
 //global variables 
-//if(screen size is > 768px){
-    //.weekly__total--container.css({opacity: 1.0});
-//}
+
+function mediaQuery(x) {
+  if (x.matches) { // If media query matches
+    console.log("changed");
+    $(".enterweeklybudget").css("opacity", "1.0");
+    $("#purchases").css("opacity", "1.0");
+
+  } else {
+      console.log("ERROR");
+  }
+}
+
+let x = window.matchMedia("(min-width: 769px)")
+mediaQuery(x) // Call listener function at run time
+x.addListener(mediaQuery) // Attach listener function on state changes
 
 let budgetSaver = () => {
   tracker = ".enterweeklybudget"; 
-  income = $("#weeklyTotal").val().replace(/[^0-9\.]+/g,'');
+  // income = $("#weeklyTotal").val().replace(/[^0-9\.]+/g,'');
   foodBud = $("#food").val().replace(/[^0-9\.]+/g,'');
   entBud = $("#entertainment").val().replace(/[^0-9\.]+/g,''); 
   clothingBud = $("#clothing").val().replace(/[^0-9\.]+/g,'');
@@ -29,9 +41,6 @@ let budgetSaver = () => {
   $("#alert_bills").remove();
   $("#alert_total").remove()
  
-
-  
-  
  if(!income){
    $("#weekly_tot").text("$0"); 
    $("#total_remaining").text(`Remaining: $0`);
@@ -77,6 +86,10 @@ let budgetSaver = () => {
    $("#bills_total").text("$" + billsBud);
    $("#bills_remaining").text(`Remaining: $${billsBud}`); 
  }
+
+
+
+ clear();
 
 };
 
@@ -266,6 +279,11 @@ let clear = () => {
   document.querySelector("#clothing-price-log").value = "";
   document.querySelector("#ent-price-log").value = "";
   document.querySelector("#bills-price-log").value = "";
+  document.querySelector("#weeklyTotal").value = "";
+  document.querySelector("#food").value = "";
+  document.querySelector("#clothing").value = "";
+  document.querySelector("#entertainment").value = "";
+  document.querySelector("#bills").value = "";
 }
 
 
