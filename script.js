@@ -1,7 +1,7 @@
 "use strict";
 
-$(document).ready(() => {
-
+$(document).ready(() => {//load script when document loaded 
+//global variables 
 let personName = undefined; 
 let income = ("");
 let foodBud =("");
@@ -9,43 +9,49 @@ let entBud =("");
 let clothingBud = ("");
 let billsBud = ("");
 let tracker = undefined; 
-let alertToggle = 0;
-//global variables 
-//if(screen size is > 768px){
-    //.weekly__total--container.css({opacity: 1.0});
-//}
 
+
+// Media Query Function
+function mediaQuery(x) {
+  if (x.matches) { // If media query matches reset opacity of sidebars to 1 when screen resized to beyond 768px. 
+    $(".enterweeklybudget").css("opacity", "1.0");
+    $("#purchases").css("opacity", "1.0");
+    $(".weekly__total--container").css("opacity", "1.0");
+
+  } else {
+      console.log("ERROR");//Log erroe if function somehow fails. 
+  }
+}
+
+let x = window.matchMedia("(min-width: 769px)")
+mediaQuery(x) // Call listener function at run time
+x.addListener(mediaQuery) // Attach listener function on state changes
+
+//Function to enter new budget into budget buddy.
 let budgetSaver = () => {
-  tracker = ".enterweeklybudget"; 
-  income = $("#weeklyTotal").val().replace(/[^0-9\.]+/g,'');
-  foodBud = $("#food").val().replace(/[^0-9\.]+/g,'');
-  entBud = $("#entertainment").val().replace(/[^0-9\.]+/g,''); 
-  clothingBud = $("#clothing").val().replace(/[^0-9\.]+/g,'');
-  billsBud = $("#bills").val().replace(/[^0-9\.]+/g,'');
+  let totalBudget = 0;
+  tracker = ".enterweeklybudget"; //Set tracker to track the current "page" as the enter weekly budget page. 
+
+  //Get the values of the budget inputs and strip all non numeric characters then convert there values into integers. 
+  foodBud = parseInt($("#food").val().replace(/[^0-9\.]+/g,''));
+  entBud = parseInt($("#entertainment").val().replace(/[^0-9\.]+/g,'')); 
+  clothingBud = parseInt($("#clothing").val().replace(/[^0-9\.]+/g,''));
+  billsBud = parseInt($("#bills").val().replace(/[^0-9\.]+/g,''));
+  
+  //Remove all alerts added and remove the alert class from the document. 
   $(".alert").removeClass("alert")
   $("#alert_food").remove();
   $("#alert_ent").remove();
   $("#alert_clothing").remove();
   $("#alert_bills").remove();
-  $("#alert_total").remove()
- 
+  $("#alert_total").remove();
 
-  
-  
- if(!income){
-   $("#weekly_tot").text("$0"); 
-   $("#total_remaining").text(`Remaining: $0`);
-   console.log("q");
- }
- else{
-   $("#weekly_tot").text("$" + income); 
-   $("#total_remaining").text(`Remaining: $${income}`);
-   console.log("r"); 
- }
 
+ //Check if the inputs had no numeric characters and print the total and remaining of each input to zero if they did not. Else set write the total and remaining given in the users input to the related category on the main "page". Sets the variable that stores the number enter into the input to zero if no number was entered. 
  if(!foodBud){
    $("#food_total").text("$0") 
    $("#food_remaining").text(`Remaining: $0`);
+   foodBud = 0;
  }
  else{
    $("#food_total").text("$" + foodBud); 
@@ -55,6 +61,7 @@ let budgetSaver = () => {
  if(!entBud){
    $("#ent_total").text("$0"); 
    $("#ent_remaining").text(`Remaining: $0`);
+   entBud = 0; 
  }else{
    $("#ent_total").text("$" + entBud); 
    $("#ent_remaining").text(`Remaining: $${entBud}`);
@@ -63,6 +70,7 @@ let budgetSaver = () => {
  if(!clothingBud){
    $("#clothing_total").text('$0'); 
    $("clothing_remaining").text(`Remaining: $0`); 
+   clothingBud = 0;
  }
  else{
    $("#clothing_total").text("$" + clothingBud); 
@@ -72,44 +80,71 @@ let budgetSaver = () => {
  if(!billsBud){
    $("#bills_total").text("$0");
    $("#bills_remaining").text(`Remaining: $0`); 
+   billsBud = 0;
  }
  else{
    $("#bills_total").text("$" + billsBud);
    $("#bills_remaining").text(`Remaining: $${billsBud}`); 
  }
 
+
+//Get the total budget. 
+totalBudget = foodBud + entBud + clothingBud + billsBud;
+$("#weekly_tot").text("$" + totalBudget);
+$("#total_remaining").text(`Remaining: $${totalBudget}`);
+
+//Call clear function. 
+ clear();
+
 };
 
+//Add click button for login on mobile. 
 $("body").on("click", ".login_button", (e) => {
     
+    //Get persons name from input and store it in a variable. 
     personName = $(".login_form").children().eq(0).val();
+
+    //fade out log in section and toggle classes to display mobile content and allow for screen resize. 
     $("#log_in_section").animate({opacity: 0.0}, 1000, function(){
+        //Remove class hidden that displays none on mobile login section. 
         $("#log_in_section").toggleClass("hidden"); 
+        //Show enter weekly budget on mobile. 
         $(".enterweeklybudget").toggleClass("hidden");
+        //Show all content on desktop. 
         $(".containerdesktop").toggleClass("desktop-hidden");
     });
+    //Append entered name to greetings. 
     $(".weekly_budget_title").append(personName + ","); 
     $("#pinsert").append(personName + ",");   
 });
 
+//Login in button for desktop. 
 $("body").on("click", ".second_login_button", (e) => {
     
   personName = $(".login_form").children().eq(0).val();
+  //Fade out log in section. 
   $("#log_in_section").animate({opacity: 0.0}, 1000, function(){
-      $("#log_in_section").toggleClass("desktop-hidden"); 
+    //Remove log in section.   
+    $("#log_in_section").toggleClass("desktop-hidden"); 
+    //Show all content. 
       $(".containerdesktop").toggleClass("desktop-hidden");
+      //Show the weekly totals on mobile. 
        $(".weekly__total--container").toggleClass("hidden");
+       //Hide the login section on mobile. 
        $("#log_in_section").toggleClass("hidden");
-       tracker = "#purchases"
+       //Sets tracker to weekly total "page".
+       tracker = ".weekly__total--container"
   });
+  //Appends enter name to greetings. 
   $(".weekly_budget_title").append(personName + ","); 
   $("#pinsert").append(personName + ",");   
 });
 
+// Click event for the enter weekly budget save buttons 
 $("body").on("click", ".enterweeklybudget .second_save", (e) => {
   budgetSaver();
 })
-
+ 
 $("body").on("click" ,".enterweeklybudget .save", (e) => {
 
     disablePointer();
@@ -118,10 +153,12 @@ $("body").on("click" ,".enterweeklybudget .save", (e) => {
 
 });
 
+//Function to fade in weekly total "page".
 let show = () => {
     $(".weekly__total--container").animate({opacity: 1}, 750);
 }
 
+//Function to fade out current mobile "page" and fade in the weekly total. 
 let afterSave = (theId) => {
     $(`${theId}`).animate({opacity: 0.0}, 750, function(){
         $(`${theId}`).toggleClass("hidden");
@@ -132,13 +169,10 @@ let afterSave = (theId) => {
       });
 }
 
-let calculateBudget = () => {
-  parseInt(income.replace(/[^0-9\.]+/g,''));
-  parseInt(foodBud.replace(/[^0-9\.]+/g,''));
-  parseInt(entBud.replace(/[^0-9\.]+/g,''));
-  parseInt(clothingBud.replace(/[^0-9\.]+/g,''));
-  parseInt(billsBud.replace(/[^0-9\.]+/g,'')); 
+//Function to add entered purchases to weekly total. 
+let calculateBudget = () => { 
 
+  //Gets item purchases inputs and strips non-numeric characters and then converts them to numbers
   let food_pur = parseInt(document.querySelector("#food-price-log").value.replace(/[^0-9\.]+/g,''));
  
   let ent_pur = parseInt(document.querySelector("#ent-price-log").value.replace(/[^0-9\.]+/g,''));
@@ -155,13 +189,13 @@ let calculateBudget = () => {
 
   let total = parseInt(document.querySelector("#total_remaining").textContent.replace(/[^0-9\.]+/g,''));
 
+  // If the inputs are empty set the input value as 0
   if(!total){
     total = 0; 
   }
 
   if(!food_re){
     food_re = 0; 
-    console.log(food_re);
   }
  
   if(!ent_rem){
@@ -189,11 +223,13 @@ let calculateBudget = () => {
     bills_pur = 0; 
   }
 
+  // Subtracting the purchase from the total budget
   food_re = food_re - food_pur;
   ent_rem = ent_rem - ent_pur; 
   clothing_rem = clothing_rem - clothing_pur; 
   bills_rem = bills_rem - bills_pur; 
-  
+
+  // If the input values are less than 0 then trigger the alert message
   if (food_re <0) {
     $("#food_total").addClass("alert");
     let alert = document.createElement("p");
@@ -201,6 +237,10 @@ let calculateBudget = () => {
     alert.setAttribute("class","alert");
     alert.innerHTML= "Yo, you need to chill on the spending!"
     $("#food_total").parent().append(alert);
+    document.getElementById("food_remaining").innerHTML = "Remaning: -$" + Math.abs(food_re);
+  }
+  else{
+    document.getElementById("food_remaining").innerHTML = "Remaning: $" + food_re;
   }
 
   if (ent_rem <0) {
@@ -210,6 +250,10 @@ let calculateBudget = () => {
     alert.setAttribute("class","alert");
     alert.innerHTML= "Yo, you need to chill on the spending!"
     $("#ent_total").parent().append(alert);
+    document.getElementById("ent_remaining").innerHTML = "Remaining: -$" + Math.abs(ent_rem);
+  }
+  else{
+    document.getElementById("ent_remaining").innerHTML = "Remaining: $" + ent_rem;
   }
 
   if (clothing_rem <0) {
@@ -219,6 +263,10 @@ let calculateBudget = () => {
     alert.setAttribute("class","alert");
     alert.innerHTML= "Yo, you need to chill on the spending!"
     $("#clothing_total").parent().append(alert);
+    document.getElementById("clothing_remaining").innerHTML = "Remaining: -$" + Math.abs(clothing_rem);
+  }
+  else{
+    document.getElementById("clothing_remaining").innerHTML = "Remaining: $" + clothing_rem;
   }
 
   if (bills_rem <0) {
@@ -228,6 +276,10 @@ let calculateBudget = () => {
     alert.setAttribute("class","alert");
     alert.innerHTML= "Yo, you need to chill on the spending!"
     $("#bills_total").parent().append(alert);
+    document.getElementById("bills_remaining").innerHTML = "Remaining: -$" + Math.abs(bills_rem); 
+  }
+  else{
+    document.getElementById("bills_remaining").innerHTML = "Remaining: $" + bills_rem; 
   }
 
   total = total - (food_pur + ent_pur + bills_pur + clothing_pur);
@@ -239,15 +291,15 @@ let calculateBudget = () => {
     alert.setAttribute("class","alert");
     alert.innerHTML= "Yo, you need to chill on the spending!"
     $("#weekly_tot").parent().append(alert);
+    document.getElementById("total_remaining").innerHTML = "Remaining: -$" + Math.abs(total); 
+  }
+  else{
+    document.getElementById("total_remaining").innerHTML = "Remaining: $" + total; 
   }
 
-  document.getElementById("food_remaining").innerHTML = "Remaning: $" + food_re; 
-  document.getElementById("clothing_remaining").innerHTML = "Remaining: $" + clothing_rem;
-  document.getElementById("ent_remaining").innerHTML = "Remaining: $" + ent_rem;
-  document.getElementById("bills_remaining").innerHTML = "Remaining: $" + bills_rem; 
-  document.getElementById("total_remaining").innerHTML = "Remaining: $" + total; 
 }
 
+// Click event for the purchases section save buttons
 $("body").on("click", "#purchases #pur-log .second_save", () => {
   calculateBudget();
   clear();
@@ -261,11 +313,17 @@ $("body").on("click", "#purchases #pur-log .save", () => {
     clear();
 });
 
+
+// Clearing the form inputs
 let clear = () => {
   document.querySelector("#food-price-log").value = "";
   document.querySelector("#clothing-price-log").value = "";
   document.querySelector("#ent-price-log").value = "";
   document.querySelector("#bills-price-log").value = "";
+  document.querySelector("#food").value = "";
+  document.querySelector("#clothing").value = "";
+  document.querySelector("#entertainment").value = "";
+  document.querySelector("#bills").value = "";
 }
 
 
@@ -275,10 +333,9 @@ $("body").on("click", "section ul a.burger", (e) => {
 });
 
 // Click Event for menu items
-let homeButton = $("body").on("click", "#home", (e) => {
+$("body").on("click", "#home", (e) => {
   $('#home').off('click');
   disablePointer(e.target); 
-  console.log(e);
   if(tracker === ".weekly__total--container"){
     setTimeout(function(){enablePointer(e.target);}, 1);
     return; 
@@ -313,7 +370,7 @@ let homeButton = $("body").on("click", "#home", (e) => {
  
 }); 
 
-let editButton = $("body").on("click", "#edit_budget", (e) => {
+$("body").on("click", "#edit_budget", (e) => {
   console.log(e.target);
   disablePointer(e.target);
   if(tracker === ".enterweeklybudget"){
@@ -346,8 +403,7 @@ let editButton = $("body").on("click", "#edit_budget", (e) => {
 
 }); 
 
-let logButton = $("body").on("click", "#log_purchases", (e) => {
-  console.log(e);
+$("body").on("click", "#log_purchases", (e) => {
   disablePointer(e.target);
   if(tracker === "#purchases"){
     setTimeout(function(){enablePointer(e.target);}, 1);
@@ -378,10 +434,8 @@ let logButton = $("body").on("click", "#log_purchases", (e) => {
   }
 
 }); 
-console.log(homeButton);
-console.log(editButton);
-console.log(editButton);
 
+// Button disabler and enabler functions
 let disablePointer = (el) => {
     $(el).css("pointer-events", "none");
 }
