@@ -44,6 +44,10 @@
   .burger {
     font-size: 35px;
   }
+
+  .burger:hover {
+    cursor: pointer;
+  }
   
   /* Log in section */
   .log_in_section {
@@ -88,6 +92,10 @@
 
   .second_login_button {
     display: none;
+  }
+
+  .login_button:hover, .second_login_button:hover {
+    cursor: pointer;
   }
   
   
@@ -144,6 +152,10 @@
   .second_save{
     display: none;
     padding-bottom: 20px;
+  }
+
+  .save:hover, .second_save:hover {
+    cursor: pointer;
   }
   
   .total {
